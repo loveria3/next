@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간식 이상형 월드컵 🏆</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Gowun Dodum', sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fca5a5 100%);
+            min-height: 100vh;
+        }
+        .title-font {
+            font-family: 'Gaegu', sans-serif;
+        }
+        /* 카드 등장 및 전환 애니메이션 */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .selected-card {
+            animation: selectPulse 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 10;
+        }
+        @keyframes selectPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); filter: brightness(1.1); }
+            100% { transform: scale(1.02); }
+        }
+        .unselected-card {
+            animation: fadeOutToBack 0.4s ease-in forwards;
+        }
+        @keyframes fadeOutToBack {
+            to { opacity: 0; transform: scale(0.9); filter: grayscale(1); }
+        }
+        
+        /* 스크롤바 스타일링 */
+        #selection-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+        #selection-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        #selection-grid::-webkit-scrollbar-thumb {
+            background: rgba(245, 158, 11, 0.4);
+            border-radius: 10px;
+        }
+        #selection-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(245, 158, 11, 0.6);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between p-4 overflow-x-hidden">
+
+    <!-- 메인 컨테이너 -->
+    <main class="w-full max-w-4xl flex-grow flex flex-col items-center justify-center py-6">
+        
+        <!-- 1. 시작 화면 -->
+        <section id="start-screen" class="w-full flex flex-col items-center justify-center text-center py-12 px-4 bg-white/80 backdrop-blur-md rounded-3xl shadow-xl border-4 border-amber-400 fade-in max-w-md">
+            <div class="text-6xl mb-4 animate-bounce">🏆</div>
+            <h1 class="title-font text-5xl font-bold text-amber-800 mb-2 drop-shadow-sm">간식 월드컵</h1>
+            <p class="text-gray-600 mb-8 font-medium">나의 최고의 소울 간식을 찾아라!<br><span class="text-amber-600 font-bold">50가지의 다채로운 후보</span>가 대기 중!</p>
+            
+            <button onclick="startGame()" class="px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-xl rounded-full shadow-lg transition-transform transform hover:scale-105 active:scale-95 duration-200">
+                간식 고르러 가기 🚀
+            </button>
+        </section>
+
+        <!-- 1.5 간식 선택 화면 (기본 숨김) -->
+        <section id="selection-screen" class="w-full hidden flex flex-col items-center fade-in">
+            <!-- 상단 헤더 영역 -->
+            <div class="w-full max-w-4xl bg-white/90 backdrop-blur-sm rounded-2xl shadow-md p-5 mb-6 text-center border-2 border-amber-200">
+                <h1 class="title-font text-3xl font-bold text-amber-800 mb-2">😋 월드컵 간식 선택하기</h1>
+                <p class="text-sm md:text-base text-gray-600 mb-4 font-medium">
+                    아래 50가지 중 최애 후보로 등록할 간식 <span class="text-orange-500 font-bold text-lg">16개</span>를 골라주세요!
+                </p>
+                
+                <!-- 조작 버튼들 및 카운터 -->
+                <div class="flex flex-wrap justify-center items-center gap-3">
+                    <span class="px-5 py-2 bg-orange-100 border border-orange-200 text-orange-700 font-bold rounded-full text-sm md:text-base">
+                        선택 현황: <span id="select-count" class="text-lg text-orange-600">0</span> / 16
+                    </span>
+                    <button onclick="autoSelect()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-full text-sm transition-all duration-200 shadow-sm active:scale-95">
+                        🪄 무작위 16개 선택
+                    </button>
+                    <button onclick="resetSelection()" class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold rounded-full text-sm transition-all duration-200 shadow-sm active:scale-95">
+                        🗑️ 초기화
+                    </button>
+                </div>
+            </div>
+
+            <!-- 간식 리스트 그리드 -->
+            <div id="selection-grid" class="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-[60vh] overflow-y-auto pr-1 pb-4 mb-24 rounded-2xl p-3 bg-white/40 backdrop-blur-sm border border-white/40">
+                <!-- 자바스크립트로 동적 렌더링 -->
+            </div>
+
+            <!-- 시작하기 고정 하단 바 -->
+            <div class="fixed bottom-0 left-0 right-0 bg-white/95 border-t border-amber-100 shadow-2xl py-4 px-6 flex justify-center items-center gap-4 z-40 backdrop-blur-md">
+                <div class="max-w-4xl w-full flex justify-between items-center gap-4">
+                    <div class="hidden sm:block text-left">
+                        <p class="text-sm text-gray-500 font-semibold">16개의 간식을 다 선택하셨나요?</p>
+                        <p class="text-xs text-gray-400">당신의 소울 간식 컵의 주인공을 찾아보세요!</p>
+                    </div>
+                    <button id="btn-start-tournament" onclick="startTournament()" disabled 
+                            class="w-full sm:w-auto px-10 py-3.5 bg-gray-300 text-gray-500 cursor-not-allowed font-bold text-lg rounded-full shadow-md transition-all duration-200 transform active:scale-95 flex items-center justify-center gap-2">
+                        🏆 16강 월드컵 시작하기 🚀
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 게임 진행 화면 (기본 숨김) -->
+        <section id="game-screen" class="w-full hidden flex flex-col items-center">
+            <!-- 라운드 정보 헤더 -->
+            <div class="w-full max-w-2xl bg-white/90 backdrop-blur-sm rounded-2xl shadow-md p-4 mb-6 text-center border-2 border-orange-200">
+                <div class="flex justify-between items-center mb-2 px-2">
+                    <span id="round-title" class="title-font text-3xl font-bold text-orange-600">16강</span>
+                    <span id="match-progress" class="text-gray-500 font-semibold">1 / 8</span>
+                </div>
+                <!-- 프로그레스 바 -->
+                <div class="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-orange-500 to-amber-400 h-full transition-all duration-300" style="width: 12.5%"></div>
+                </div>
+            </div>
+
+            <!-- 대결 카드 영역 -->
+            <div class="w-full flex flex-col md:flex-row justify-center items-stretch gap-6 md:gap-8 max-w-3xl relative px-2">
+                
+                <!-- 왼쪽 카드 -->
+                <div id="card-left" onclick="selectSnack('left')" class="group flex-1 bg-white hover:bg-amber-50 cursor-pointer rounded-3xl shadow-lg border-4 border-transparent hover:border-orange-400 transition-all duration-300 overflow-hidden flex flex-col items-center justify-between p-6 md:p-8 min-h-[300px] md:min-h-[420px] select-none transform active:scale-98">
+                    <div class="w-full flex justify-end">
+                        <span class="px-4 py-1.5 bg-orange-100 text-orange-600 font-bold rounded-full text-xs">좌측 선택</span>
+                    </div>
+                    <div id="emoji-left" class="text-7xl md:text-9xl my-4 transition-transform group-hover:scale-110 duration-300">😋</div>
+                    <div class="text-center w-full">
+                        <h2 id="name-left" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 truncate">간식 이름 A</h2>
+                        <p id="desc-left" class="text-sm md:text-base text-gray-500 font-medium">달콤하고 맛있는 간식 설명</p>
+                    </div>
+                </div>
+
+                <!-- VS 배지 -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none bg-orange-500 text-white font-black text-xl md:text-2xl w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-xl border-4 border-white animate-pulse">
+                    VS
+                </div>
+
+                <!-- 오른쪽 카드 -->
+                <div id="card-right" onclick="selectSnack('right')" class="group flex-1 bg-white hover:bg-amber-50 cursor-pointer rounded-3xl shadow-lg border-4 border-transparent hover:border-orange-400 transition-all duration-300 overflow-hidden flex flex-col items-center justify-between p-6 md:p-8 min-h-[300px] md:min-h-[420px] select-none transform active:scale-98">
+                    <div class="w-full flex justify-end">
+                        <span class="px-4 py-1.5 bg-orange-100 text-orange-600 font-bold rounded-full text-xs">우측 선택</span>
+                    </div>
+                    <div id="emoji-right" class="text-7xl md:text-9xl my-4 transition-transform group-hover:scale-110 duration-300">😋</div>
+                    <div class="text-center w-full">
+                        <h2 id="name-right" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2 truncate">간식 이름 B</h2>
+                        <p id="desc-right" class="text-sm md:text-base text-gray-500 font-medium">바삭하고 촉촉한 간식 설명</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. 우승 결과 화면 (기본 숨김) -->
+        <section id="winner-screen" class="w-full hidden flex flex-col items-center text-center px-4 max-w-lg">
+            <canvas id="confetti-canvas" class="absolute inset-0 pointer-events-none z-30 w-full h-full"></canvas>
+
+            <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 border-4 border-yellow-400 fade-in w-full flex flex-col items-center">
+                <div class="text-5xl mb-2 animate-bounce">🏆</div>
+                <h1 class="title-font text-4xl font-extrabold text-amber-800 mb-6">나의 우승 간식!</h1>
+                
+                <!-- 우승자 왕관 및 카드 -->
+                <div class="relative w-full max-w-[280px] bg-gradient-to-b from-amber-100 to-yellow-50 p-6 rounded-2xl border-2 border-yellow-400 shadow-md mb-6">
+                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-4xl">👑</span>
+                    <div id="winner-emoji" class="text-8xl my-4 animate-pulse">🍔</div>
+                    <h2 id="winner-name" class="text-3xl font-bold text-gray-800 mb-2">간식 이름</h2>
+                    <p id="winner-desc" class="text-sm text-gray-500 font-semibold px-2">최종 우승을 차지한 영광의 맛</p>
+                </div>
+
+                <!-- 다시하기 버튼 -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full">
+                    <button onclick="restartGame()" class="flex-1 px-6 py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg rounded-xl shadow-md transition-all duration-200 transform active:scale-95">
+                        다시 시작하기 🔄
+                    </button>
+                    <button onclick="copyToClipboard()" class="flex-1 px-6 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg rounded-xl shadow-md transition-all duration-200 transform active:scale-95">
+                        결과 복사하기 🔗
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="w-full text-center text-gray-600 text-xs py-4 select-none font-semibold">
+        © 2026 간식 이상형 월드컵 | 중학생을 위한 맛있는 토너먼트
+    </footer>
+
+    <!-- 알림창 컴포넌트 -->
+    <div id="toast-message" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900/95 text-white px-6 py-3 rounded-full text-sm font-semibold shadow-2xl opacity-0 transition-opacity duration-300 pointer-events-none z-50 text-center">
+        결과가 클립보드에 복사되었습니다!
+    </div>
+
+    <!-- 로직 스크립트 -->
+    <script>
+        // 50가지의 상세 간식 후보 목록 데이터베이스
+        const ALL_SNACKS = [
+            { id: 1, name: "매콤달콤 떡볶이", emoji: "🍡", desc: "한국인의 소울푸드, 영원한 1티어 매콤 간식" },
+            { id: 2, name: "시원달달 아이스크림", emoji: "🍦", desc: "머리까지 찡해지는 시원하고 부드러운 단맛" },
+            { id: 3, name: "바삭바삭 닭강정", emoji: "🍗", desc: "달콤 짭조름한 양념과 극강의 바삭함" },
+            { id: 4, name: "초코칩 쿠키", emoji: "🍪", desc: "우유 한 잔과 찰떡궁합인 클래식 달달함" },
+            { id: 5, name: "뜨끈한 붕어빵", emoji: "🐟", desc: "머리부터 꼬리까지 팥/슈크림이 꽉 찬 겨울 별미" },
+            { id: 6, name: "시나몬 츄러스", emoji: "🥖", desc: "설탕과 시나몬 가루가 솔솔 뿌려진 놀이공원의 그 맛" },
+            { id: 7, name: "쫀득쫀득 마카롱", emoji: "🧁", desc: "겉바속쫀 꼬끄와 부드럽고 꾸덕한 필링" },
+            { id: 8, name: "바삭 짭조름 감자칩", emoji: "🍟", desc: "한 번 열면 멈출 수 없는 소금 고소한 매력" },
+            { id: 9, name: "꿀 흘러내리는 호떡", emoji: "🥞", desc: "쫀득한 반죽 속에 견과류와 설탕 꿀이 가득" },
+            { id: 10, name: "소시지 가득 핫도그", emoji: "🌭", desc: "케첩과 설탕의 환상적인 하모니와 뽀득 소시지" },
+            { id: 11, name: "말랑말랑 젤리", emoji: "🧸", desc: "알록달록 귀엽고 씹을수록 중독되는 쫀득 젤리" },
+            { id: 12, name: "치즈 듬뿍 피자", emoji: "🍕", desc: "고소한 모짜렐라 치즈가 가득 늘어나는 간식 제왕" },
+            { id: 13, name: "달달 촉촉 조각케이크", emoji: "🍰", desc: "보기만 해도 행복해지는 부드럽고 달콤한 레이어" },
+            { id: 14, name: "달콤 든든 군고구마", emoji: "🍠", desc: "뜨거울 때 호호 불며 김이 솔솔 나는 노란 달콤함" },
+            { id: 15, name: "알록달록 도넛", emoji: "🍩", desc: "다양한 글레이즈와 스프링클이 어우러진 비주얼 맛집" },
+            { id: 16, name: "소떡소떡", emoji: "🍢", desc: "소시지와 떡을 한 입에 쏙 먹어야 완성되는 조화" },
+            { id: 17, name: "가쓰오부시 타코야끼", emoji: "🐙", desc: "겉은 쫄깃 속은 촉촉, 가쓰오부시가 춤추는 일미" },
+            { id: 18, name: "푹신한 카스테라", emoji: "🍞", desc: "우유에 적셔 먹으면 입안에서 사르르 녹는 부드러움" },
+            { id: 19, name: "고소짭짤 팝콘", emoji: "🍿", desc: "영화관의 설렘을 그대로 담은 끝없이 들어가는 맛" },
+            { id: 20, name: "구름 같은 솜사탕", emoji: "🍭", desc: "입에 넣자마자 마법처럼 사라지는 달콤한 추억" },
+            { id: 21, name: "겉바속촉 크로플", emoji: "🥐", desc: "크로와상의 버터 풍미와 와플의 바삭함을 동시에" },
+            { id: 22, name: "고소한 호두과자", emoji: "🌰", desc: "휴게소 필수 코스, 앙금과 호두가 가득 든 간식" },
+            { id: 23, name: "생크림 와플", emoji: "🧇", desc: "바삭한 와플 사이에 달콤한 생크림과 사과잼 가득" },
+            { id: 24, name: "짭짤 촉촉 소금빵", emoji: "🥐", desc: "고소한 버터 동굴과 짭조름한 소금의 환상 케미" },
+            { id: 25, name: "타피오카 버블티", emoji: "🧋", desc: "달콤 쌉싸름한 밀크티 속 쫀득쫀득 타피오카 펄" },
+            { id: 26, name: "눈꽃 팥빙수", emoji: "🍧", desc: "소복한 얼음 위에 달콤한 팥과 인절미가 듬뿍" },
+            { id: 27, name: "달달 촉촉 군밤", emoji: "🌰", desc: "따끈따끈 노랗게 잘 익어 달콤하고 구수한 겨울철 별미" },
+            { id: 28, name: "파닭 닭꼬치", emoji: "🍢", desc: "직화 구이 향이 솔솔, 대파와 닭고기의 단짠 케미" },
+            { id: 29, name: "쫀득 고소 치즈볼", emoji: "🧀", desc: "바삭한 튀김옷 속에 모짜렐라 치즈가 가득" },
+            { id: 30, name: "바삭한 에그타르트", emoji: "🧁", desc: "겹겹이 쌓인 페이스트리 속 달콤 부드러운 커스터드 크림" },
+            { id: 31, name: "탱글 촉촉 푸딩", emoji: "🍮", desc: "카라멜 시럽이 흘러내리는 흔들흔들 탱글한 달콤함" },
+            { id: 32, name: "바삭 달달 탕후루", emoji: "🍓", desc: "과즙 팡팡 생과일에 얇고 바삭한 설탕 코팅" },
+            { id: 33, name: "추억의 달고나", emoji: "🍭", desc: "설탕과 소다의 황금 비율, 뽑기 판의 짜릿한 스릴" },
+            { id: 34, name: "달콤 꾸덕 약과", emoji: "🍪", desc: "조청의 은은한 단맛과 계피 향이 감도는 K-디저트" },
+            { id: 35, name: "신선 가득 샌드위치", emoji: "🥪", desc: "아삭한 야채와 햄, 치즈가 가득 든 든든한 한 끼" },
+            { id: 36, name: "바삭 촉촉 구운만두", emoji: "🥟", desc: "육즙이 팡 뿜어 나오는 바삭한 만두피의 유혹" },
+            { id: 37, name: "설탕 솔솔 꽈배기", emoji: "🥨", desc: "시장에서 갓 튀겨낸 쫄깃쫄깃하고 달콤한 꽈배기" },
+            { id: 38, name: "쭉 늘어나는 치즈스틱", emoji: "🧀", desc: "바삭한 튀김 속 고소한 모짜렐라 치즈가 끝없이 쭉" },
+            { id: 39, name: "짭조름한 육포", emoji: "🥩", desc: "씹을수록 고소하고 깊은 감칠맛이 폭발하는 영양 간식" },
+            { id: 40, name: "버터 구이 군옥수수", emoji: "🌽", desc: "고소한 버터를 입혀 노릇하게 구운 단짠 옥수수" },
+            { id: 41, name: "누텔라 바나나 크레페", emoji: "🥞", desc: "얇은 반죽 속에 악마의 잼 누텔라와 생바나나 가득" },
+            { id: 42, name: "바나나 향 바나나킥", emoji: "🍌", desc: "입안에 넣으면 스르륵 녹는 달콤한 바나나맛 스낵" },
+            { id: 43, name: "살얼음 둥둥 식혜", emoji: "🥛", desc: "기름진 입안을 싹 씻어주는 전통의 달콤 시원함" },
+            { id: 44, name: "바삭 회오리감자", emoji: "🥔", desc: "길쭉한 감자를 회오리 모양으로 튀겨 치즈 가루 팍팍" },
+            { id: 45, name: "꿀 가래떡구이", emoji: "🍡", desc: "겉은 누룽지처럼 고소하고 속은 말랑한 떡을 꿀에 콕!" },
+            { id: 46, name: "허니버터브레드", emoji: "🍞", desc: "허니 버터를 듬뿍 발라 구운 빵 위에 산더미 생크림" },
+            { id: 47, name: "추억의 단팥빵", emoji: "🍞", desc: "묵직한 팥앙금이 아낌없이 들어간 담백 고소함" },
+            { id: 48, name: "초코송이", emoji: "🍄", desc: "바삭한 과자 기둥 위에 달콤한 초콜릿 모자가 쏙" },
+            { id: 49, name: "매콤 짭짤 짜장라면", emoji: "🍜", desc: "간식과 야식의 경계를 허무는 짜릿하고 진한 짜장 소스" },
+            { id: 50, name: "쫀득 초코 브라우니", emoji: "🍫", desc: "꾸덕함의 한계 돌파, 진하고 묵직한 다크 초콜릿의 맛" }
+        ];
+
+        let selectedSnacks = []; // 사용자가 직접 고른 16개 간식 목록
+        let currentRound = [];   // 이번 라운드 대진 라인업
+        let nextRound = [];      // 다음 라운드 진출 후보들
+        let matchIndex = 0;      // 진행 중인 매치 순서
+        let totalMatches = 0;    // 라운드의 총 시합 수
+        let roundName = "16강";   // 라운드 이름
+        let isTransitioning = false; // 연속 마우스 클릭 방지용
+
+        // 배열 셔플 함수
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // 시작하기 버튼 -> 간식 선택 스크린 진입
+        function startGame() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('selection-screen').classList.remove('hidden');
+            
+            // 데이터 완전 리셋
+            selectedSnacks = [];
+            renderSelectionGrid();
+            updateSelectionUI();
+        }
+
+        // 50가지 선택용 카드 그리드 렌더링
+        function renderSelectionGrid() {
+            const grid = document.getElementById('selection-grid');
+            grid.innerHTML = ALL_SNACKS.map(snack => {
+                const isSelected = selectedSnacks.some(s => s.id === snack.id);
+                return `
+                    <div id="select-card-${snack.id}" onclick="toggleSelect(${snack.id})" 
+                         class="group bg-white rounded-2xl shadow-sm p-4 border-2 transition-all duration-200 cursor-pointer select-none flex flex-col items-center justify-between text-center hover:shadow-md ${isSelected ? 'border-orange-500 bg-orange-50/50 scale-[1.02]' : 'border-gray-100 hover:border-amber-300'}">
+                        <div class="w-full flex justify-end items-center mb-1">
+                            <span id="badge-${snack.id}" class="w-5 h-5 rounded-full border flex items-center justify-center text-xs transition-colors duration-200 ${isSelected ? 'bg-orange-500 border-orange-500 text-white font-bold' : 'border-gray-300 text-transparent'}">✓</span>
+                        </div>
+                        <div class="text-4xl md:text-5xl my-2 group-hover:scale-110 transition-transform duration-200">${snack.emoji}</div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-sm md:text-base line-clamp-1">${snack.name}</h3>
+                            <p class="text-[10px] md:text-xs text-gray-400 mt-1 line-clamp-2 leading-tight">${snack.desc}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 특정 카드 클릭시 선택/해제 토글
+        function toggleSelect(snackId) {
+            const snack = ALL_SNACKS.find(s => s.id === snackId);
+            const index = selectedSnacks.findIndex(s => s.id === snackId);
+
+            if (index > -1) {
+                // 이미 선택되어 있다면 해제
+                selectedSnacks.splice(index, 1);
+                updateCardUI(snackId, false);
+            } else {
+                // 새로 선택 시 16개 한도 도달 여부 점검
+                if (selectedSnacks.length >= 16) {
+                    showToast("이미 16개의 간식을 모두 고르셨어요! 월드컵을 시작해 보세요. 🏆");
+                    return;
+                }
+                selectedSnacks.push(snack);
+                updateCardUI(snackId, true);
+            }
+            updateSelectionUI();
+        }
+
+        // 전체 화면 리렌더링 없이 타겟 카드의 스타일만 실시간 변경해주는 고성능 UI 핸들러
+        function updateCardUI(snackId, isSelected) {
+            const card = document.getElementById(`select-card-${snackId}`);
+            const badge = document.getElementById(`badge-${snackId}`);
+            if (!card || !badge) return;
+
+            if (isSelected) {
+                card.classList.remove('border-gray-100', 'hover:border-amber-300');
+                card.classList.add('border-orange-500', 'bg-orange-50/50', 'scale-[1.02]');
+                badge.classList.remove('border-gray-300', 'text-transparent');
+                badge.classList.add('bg-orange-500', 'border-orange-500', 'text-white', 'font-bold');
+            } else {
+                card.classList.add('border-gray-100', 'hover:border-amber-300');
+                card.classList.remove('border-orange-500', 'bg-orange-50/50', 'scale-[1.02]');
+                badge.classList.add('border-gray-300', 'text-transparent');
+                badge.classList.remove('bg-orange-500', 'border-orange-500', 'text-white', 'font-bold');
+            }
+        }
+
+        // 선택 진행 상태 텍스트 및 시작 버튼 활성화 컨트롤
+        function updateSelectionUI() {
+            const count = selectedSnacks.length;
+            document.getElementById('select-count').textContent = count;
+
+            const startBtn = document.getElementById('btn-start-tournament');
+            if (count === 16) {
+                startBtn.disabled = false;
+                startBtn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                startBtn.classList.add('bg-gradient-to-r', 'from-orange-500', 'to-amber-500', 'text-white', 'hover:from-orange-600', 'hover:to-amber-600', 'cursor-pointer');
+            } else {
+                startBtn.disabled = true;
+                startBtn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                startBtn.classList.remove('bg-gradient-to-r', 'from-orange-500', 'to-amber-500', 'text-white', 'hover:from-orange-600', 'hover:to-amber-600', 'cursor-pointer');
+            }
+        }
+
+        // 무작위 16개 자동 채우기 기능
+        function autoSelect() {
+            selectedSnacks = [];
+            const shuffled = shuffle([...ALL_SNACKS]);
+            for (let i = 0; i < 16; i++) {
+                selectedSnacks.push(shuffled[i]);
+            }
+            renderSelectionGrid();
+            updateSelectionUI();
+            showToast("맛있는 후보 16개가 자동 선택되었어요! 🪄");
+        }
+
+        // 선택 초기화 기능
+        function resetSelection() {
+            selectedSnacks = [];
+            renderSelectionGrid();
+            updateSelectionUI();
+            showToast("선택 목록을 모두 초기화했습니다.");
+        }
+
+        // 실제 16강 토너먼트 매치 돌입
+        function startTournament() {
+            if (selectedSnacks.length !== 16) {
+                showToast("꼭 16개의 간식을 골라주셔야 월드컵이 시작됩니다!");
+                return;
+            }
+
+            document.getElementById('selection-screen').classList.add('hidden');
+            document.getElementById('game-screen').classList.remove('hidden');
+
+            // 사용자가 선택한 16개를 최종 셔플하여 대진표 준비
+            currentRound = shuffle([...selectedSnacks]);
+            nextRound = [];
+            matchIndex = 0;
+            updateRoundInfo();
+            displayMatch();
+        }
+
+        // 현재 라운드 정보 헤더 업데이트
+        function updateRoundInfo() {
+            const size = currentRound.length;
+            totalMatches = size / 2;
+            
+            if (size === 16) {
+                roundName = "16강";
+            } else if (size === 8) {
+                roundName = "8강";
+            } else if (size === 4) {
+                roundName = "준결승";
+            } else if (size === 2) {
+                roundName = "결승 🏆";
+            }
+
+            document.getElementById('round-title').textContent = roundName;
+            document.getElementById('match-progress').textContent = `${matchIndex + 1} / ${totalMatches}`;
+            
+            // 게이지바 비율 설정
+            const progressPercent = ((matchIndex) / totalMatches) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+        }
+
+        // 매치 화면에 후보 2개 렌더링
+        function displayMatch() {
+            const leftSnack = currentRound[matchIndex * 2];
+            const rightSnack = currentRound[matchIndex * 2 + 1];
+
+            document.getElementById('emoji-left').textContent = leftSnack.emoji;
+            document.getElementById('name-left').textContent = leftSnack.name;
+            document.getElementById('desc-left').textContent = leftSnack.desc;
+
+            document.getElementById('emoji-right').textContent = rightSnack.emoji;
+            document.getElementById('name-right').textContent = rightSnack.name;
+            document.getElementById('desc-right').textContent = rightSnack.desc;
+
+            // 카드가 스르륵 나타나는 시각효과 초기화
+            const leftCard = document.getElementById('card-left');
+            const rightCard = document.getElementById('card-right');
+            
+            leftCard.className = leftCard.className.replace(/selected-card|unselected-card/g, '').trim() + " fade-in";
+            rightCard.className = rightCard.className.replace(/selected-card|unselected-card/g, '').trim() + " fade-in";
+            
+            setTimeout(() => {
+                leftCard.classList.remove('fade-in');
+                rightCard.classList.remove('fade-in');
+                isTransitioning = false;
+            }, 400);
+        }
+
+        // 한쪽 카드 클릭 시 토너먼트 진행
+        function selectSnack(direction) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const leftCard = document.getElementById('card-left');
+            const rightCard = document.getElementById('card-right');
+
+            const selectedIndex = matchIndex * 2 + (direction === 'left' ? 0 : 1);
+            const winner = currentRound[selectedIndex];
+            nextRound.push(winner);
+
+            // 선택 연출 애니메이션 가동
+            if (direction === 'left') {
+                leftCard.classList.add('selected-card');
+                rightCard.classList.add('unselected-card');
+            } else {
+                rightCard.classList.add('selected-card');
+                leftCard.classList.add('unselected-card');
+            }
+
+            setTimeout(() => {
+                matchIndex++;
+                if (matchIndex < totalMatches) {
+                    // 다음 경기 진행
+                    updateRoundInfo();
+                    displayMatch();
+                } else {
+                    // 현재 라운드 완료 시 다음 라운드로 빌드
+                    if (nextRound.length === 1) {
+                        // 최종 우승자 탄생!
+                        showWinner(nextRound[0]);
+                    } else {
+                        currentRound = [...nextRound];
+                        nextRound = [];
+                        matchIndex = 0;
+                        updateRoundInfo();
+                        displayMatch();
+                    }
+                }
+            }, 600);
+        }
+
+        // 최종 우승 세레모니 및 축하화면
+        function showWinner(winner) {
+            document.getElementById('game-screen').classList.add('hidden');
+            const winnerScreen = document.getElementById('winner-screen');
+            winnerScreen.classList.remove('hidden');
+
+            document.getElementById('winner-emoji').textContent = winner.emoji;
+            document.getElementById('winner-name').textContent = winner.name;
+            document.getElementById('winner-desc').textContent = winner.desc;
+
+            // 화려한 캔버스 파티클 분사 시작
+            startConfetti();
+        }
+
+        // 다시 도전하기 -> 간식 선택 스크린으로 이동 및 초기화
+        function restartGame() {
+            stopConfetti();
+            document.getElementById('winner-screen').classList.add('hidden');
+            document.getElementById('selection-screen').classList.remove('hidden');
+            selectedSnacks = [];
+            renderSelectionGrid();
+            updateSelectionUI();
+        }
+
+        // 결과 텍스트를 포맷하여 클립보드에 복사
+        function copyToClipboard() {
+            const winnerName = document.getElementById('winner-name').textContent;
+            const textToCopy = `🏆 [간식 이상형 월드컵] 내 최애 소울 간식은 바로 '${winnerName}'! 당신의 최애 간식도 직접 골라 대결해보세요! 🧁😋`;
+            
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textToCopy;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("결과가 성공적으로 복사되었습니다! 친구들에게 자랑해봐요! 🎉");
+            } catch (err) {
+                showToast("클립보드 복사에 실패했습니다.");
+            }
+            document.body.removeChild(tempTextArea);
+        }
+
+        // 커스텀 토스트 알림 메시지 출력
+        function showToast(message) {
+            const toast = document.getElementById('toast-message');
+            toast.textContent = message;
+            toast.style.opacity = '1';
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2500);
+        }
+
+        /* -----------------------------------------
+         * 자체 캔버스 폭죽(Confetti) 애니메이션 물리 엔진
+         * ----------------------------------------- */
+        let canvas, ctx;
+        let animationFrameId;
+        let particles = [];
+        const colors = ['#f43f5e', '#3b82f6', '#10b981', '#eab308', '#a855f7', '#ff7849', '#ffc82c'];
+
+        function startConfetti() {
+            canvas = document.getElementById('confetti-canvas');
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push(createParticle());
+            }
+
+            animateConfetti();
+        }
+
+        function resizeCanvas() {
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height - canvas.height,
+                size: Math.random() * 8 + 5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                speedX: Math.random() * 3 - 1.5,
+                speedY: Math.random() * 5 + 3,
+                rotation: Math.random() * 360,
+                rotationSpeed: Math.random() * 4 - 2
+            };
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, idx) => {
+                p.y += p.speedY;
+                p.x += p.speedX;
+                p.rotation += p.rotationSpeed;
+
+                if (p.y > canvas.height) {
+                    particles[idx] = createParticle();
+                    particles[idx].y = -20;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+            });
+
+            animationFrameId = requestAnimationFrame(animateConfetti);
+        }
+
+        function stopConfetti() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            window.removeEventListener('resize', resizeCanvas);
+        }
+    </script>
+</body>
+</html>
