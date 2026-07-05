@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숫자 맞추기 게임</title>
+    <style>
+        /* 애플 스타일의 깔끔하고 부드러운 배경 시스템 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 둥근 모서리와 은은한 그림자의 카드 레이아웃 */
+        .game-container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            max-width: 380px;
+            width: 90%;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 24px;
+        }
+
+        .chance-box {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            color: #1d1d1f;
+        }
+
+        #chances {
+            font-weight: 700;
+            color: #0071e3; /* 애플 시그니처 블루 */
+        }
+
+        /* 입력창 스타일 */
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            outline: none;
+            text-align: center;
+            transition: all 0.2s ease;
+            background-color: #f5f5f7;
+        }
+
+        input[type="number"]:focus {
+            border-color: #0071e3;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+        }
+
+        /* 버튼 스타일 */
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0077ed;
+        }
+
+        button:disabled {
+            background-color: #d2d2d7;
+            color: #86868b;
+            cursor: not-allowed;
+        }
+
+        /* 다시 시작 버튼 (미니멀 텍스트 링크 스타일) */
+        #resetBtn {
+            background-color: transparent;
+            color: #0071e3;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 20px;
+            padding: 5px;
+        }
+        #resetBtn:hover {
+            text-decoration: underline;
+            background-color: transparent;
+        }
+
+        /* 메시지 스타일 */
+        .message {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 24px;
+            line-height: 1.5;
+            padding: 12px;
+            border-radius: 10px;
+        }
+        
+        .hint { color: #ff9500; background: rgba(255, 149, 0, 0.1); }  /* 애플 오렌지 */
+        .success { color: #34c759; background: rgba(52, 199, 89, 0.1); } /* 애플 그린 */
+        .fail { color: #ff3b30; background: rgba(255, 59, 48, 0.1); }    /* 애플 레드 */
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h2>숫자 맞추기</h2>
+    <p class="description">1부터 100 사이의 숫자를 5번 안에 맞춰보세요.</p>
+    <p class="chance-box">남은 기회 <span id="chances">5</span>회</p>
+    
+    <input type="number" id="guessInput" min="1" max="100" placeholder="숫자 입력" autofocus>
+    <button onclick="checkGuess()">확인</button>
+
+    <div id="resultMessage"></div>
+    <button id="resetBtn" onclick="resetGame()" style="display:none;">다시 시작하기</button>
+</div>
+
+<script>
+    let answer = Math.floor(Math.random() * 100) + 1;
+    let chances = 5;
+
+    // 엔터키 입력 지원
+    document.getElementById("guessInput").addEventListener("keyup", function(event) {
+        if (event.key === "Enter" && !this.disabled) {
+            checkGuess();
+        }
+    });
+
+    function checkGuess() {
+        const inputField = document.getElementById("guessInput");
+        const resultDiv = document.getElementById("resultMessage");
+        const chanceSpan = document.getElementById("chances");
+        
+        let userGuess = parseInt(inputField.value);
+
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            resultDiv.className = "message hint";
+            resultDiv.innerText = "1부터 100 사이의 숫자를 입력해주세요.";
+            return;
+        }
+
+        chances--;
+        chanceSpan.innerText = chances;
+
+        if (userGuess === answer) {
+            resultDiv.className = "message success";
+            resultDiv.innerText = `🎉 정답입니다! 정답은 ${answer}였습니다.`;
+            endGame();
+        } else if (chances === 0) {
+            resultDiv.className = "message fail";
+            resultDiv.innerText = `아쉽지만 기회를 모두 잃었습니다.\n정답은 ${answer}입니다.`;
+            endGame();
+        } else {
+            resultDiv.className = "message hint";
+            if (userGuess < answer) {
+                resultDiv.innerText = `UP (입력한 ${userGuess}보다 큽니다)`;
+            } else {
+                resultDiv.innerText = `DOWN (입력한 ${userGuess}보다 작습니다)`;
+            }
+        }
+
+        inputField.value = "";
+        inputField.focus();
+    }
+
+    function endGame() {
+        document.getElementById("guessInput").disabled = true;
+        document.querySelector("button[onclick='checkGuess()']").disabled = true;
+        document.getElementById("resetBtn").style.display = "inline-block";
+    }
+
+    function resetGame() {
+        answer = Math.floor(Math.random() * 100) + 1;
+        chances = 5;
+        
+        const resultDiv = document.getElementById("resultMessage");
+        resultDiv.innerText = "";
+        resultDiv.className = "";
+        
+        document.getElementById("chances").innerText = chances;
+        document.getElementById("guessInput").disabled = false;
+        document.getElementById("guessInput").value = "";
+        document.querySelector("button[onclick='checkGuess()']").disabled = false;
+        document.getElementById("resetBtn").style.display = "none";
+        document.getElementById("guessInput").focus();
+    }
+</script>
+
+</body>
+</html>
