@@ -27,6 +27,8 @@
   header h1{font-family:'Gaegu',sans-serif; font-size:clamp(34px,8vw,58px); margin:.1em 0; line-height:1.15;}
   header p.sub{color:var(--soft); font-size:clamp(15px,2.6vw,18px); margin:.4em auto 0; max-width:640px;}
   .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
+  .wb-hero-btn{display:inline-block; margin-top:20px; text-decoration:none; background:var(--orange); color:#fff;
+    font-family:'Gaegu',sans-serif; font-size:18px; padding:12px 28px; border-radius:999px; box-shadow:0 8px 18px rgba(255,143,63,.3);}
   .badge{background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 14px; font-size:14px; color:var(--soft);}
   .badge b{color:var(--ink);}
 
@@ -49,13 +51,13 @@
   .card{background:#fff; border:2px solid var(--line); border-radius:22px; padding:clamp(18px,3vw,26px); margin-top:16px; box-shadow:0 10px 30px rgba(56,140,220,.06);}
   .card h3{font-family:'Gaegu',sans-serif; font-size:21px; margin:.1em 0 .4em;}
 
-  /* 어떻게 해요? — 워크북 지시 */
+  /* 어떻게 해요? — 짧은 진행 안내 */
   .howto{background:#f0faff; border:2px solid #cfe8ff; border-radius:16px; padding:12px 16px; margin:10px 0 4px;}
   .howto .ht{font-family:'Gaegu',sans-serif; font-size:17px; color:#0284c7;}
   .howto ol{margin:.3em 0 0; padding-left:1.3em; font-size:15px;}
   .howto ol li{margin:.15em 0;}
 
-  .menu-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:10px;}
+  .menu-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); margin-top:10px;}
   .mi{border:2px solid var(--line); border-radius:16px; padding:14px; background:#fff;}
   .mi .mi-t{font-family:'Gaegu',sans-serif; font-size:19px;}
   .mi .mi-d{font-size:14px; color:var(--soft); margin-top:4px;}
@@ -74,36 +76,24 @@
   .rd .rw{font-size:13.5px; color:var(--soft); margin-top:2px;}
   .rd .rnow{position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:var(--sky); color:#fff; font-size:11px; font-weight:700; padding:2px 10px; border-radius:999px;}
 
-  /* 역할 카드 */
+  /* 역할 카드 (표시 전용) */
   .role{border:2px solid var(--line); border-radius:18px; padding:14px; background:#fff;}
   .role .r-emo{font-size:32px;}
   .role .r-t{font-family:'Gaegu',sans-serif; font-size:20px;}
   .role .r-d{font-size:13.5px; color:var(--soft); margin-top:3px;}
-  .role .r-fit{margin-top:8px; font-size:13px; background:#f0faff; color:#0284c7; border-radius:10px; padding:5px 10px;}
-  .role input{width:100%; margin-top:10px; border:2px solid var(--line); border-radius:10px; padding:8px 10px; font-family:'Gowun Dodum',sans-serif; font-size:15px;}
-  .role input:focus{outline:none; border-color:var(--sky);}
 
-  /* 기록판 */
-  .board{background:#f7fbff; border:2px solid #cfe8ff; border-radius:20px; padding:16px 18px; margin-top:14px;}
-  .board .b-t{font-family:'Gaegu',sans-serif; font-size:19px; color:#0284c7;}
-  .board .b-d{font-size:13.5px; color:var(--soft); margin-top:2px;}
-  .board input[type=text]{width:100%; border:2px solid #d8e9f8; border-radius:12px; padding:10px 12px; font-family:'Gowun Dodum',sans-serif; font-size:15px; background:#fff; margin-top:8px;}
-  .board input:focus{outline:none; border-color:var(--sky);}
-  .board textarea.prob-detail{width:100%; border:2px dashed #d8e9f8; border-radius:12px; padding:8px 12px; font-family:'Gowun Dodum',sans-serif;
-    font-size:13.5px; background:#fdfeff; color:var(--ink); margin:4px 0 2px; resize:vertical; min-height:44px; line-height:1.5;}
-  .board textarea.prob-detail:focus{outline:none; border-color:var(--sky); border-style:solid;}
-  .save-hint{font-size:12.5px; color:var(--soft); margin-top:8px;}
+  /* 워크북 안내 배너 */
+  .workbook-banner{margin-top:14px; background:#fff7f0; border:2px solid #ffd9b8; border-radius:16px; padding:14px 18px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .workbook-banner .wb-t{font-family:'Gaegu',sans-serif; font-size:18px; color:#c2560a;}
+  .workbook-banner .wb-d{font-size:13.5px; color:var(--soft);}
+  .workbook-banner a.wb-btn{margin-left:auto; text-decoration:none; background:var(--orange); color:#fff; font-family:'Gaegu',sans-serif;
+    font-size:15px; padding:8px 18px; border-radius:999px; white-space:nowrap;}
 
-  /* 마법의 문장 연습칸 */
+  /* 마법의 문장 예시 */
   .magic-line{font-family:'Gaegu',sans-serif; font-size:clamp(17px,3.5vw,22px); text-align:center; margin-top:10px; line-height:2.1;}
-  .magic-line input{display:inline-block; width:min(200px,42%); border:none; border-bottom:3px dashed var(--sky); background:transparent;
-    font-family:'Gowun Dodum',sans-serif; font-size:16px; text-align:center; padding:4px 6px;}
-  .magic-line input:focus{outline:none; border-bottom-style:solid;}
-
-  /* 제출 전 체크리스트 */
-  .checks{list-style:none; margin:8px 0 0; padding:0; font-size:14.5px;}
-  .checks li{margin:.4em 0; color:var(--soft);}
-  .checks li.done{color:#15803d; font-weight:700;}
+  .magic-line b{color:#0284c7;}
+  .magic-line b.do{color:#e0447e;}
 
   /* 문제/아이디어 카드 (선택형, 노란 도움 카드) */
   details.pick{margin-top:14px; border:2.5px solid #ffc94d; border-radius:16px; background:#fffaf0; overflow:hidden; box-shadow:0 4px 14px rgba(255,180,0,.12);}
@@ -120,33 +110,9 @@
   details.pick summary .pk-s{font-size:12.5px; color:#b8860b; font-family:'Gowun Dodum',sans-serif;}
   details.pick .pk-note{margin:0 16px 10px; font-size:13px; color:#a8660a; background:#fff3d6; border-radius:10px; padding:8px 12px;}
   .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0 16px 16px;}
-  .chip{border:2px solid #ffd699; background:#fff; border-radius:999px; padding:8px 15px; font-size:14px; cursor:pointer; font-family:'Gowun Dodum',sans-serif; transition:transform .08s;}
-  .chip:hover{background:#fff3d6; border-color:#ffb020;}
-  .chip:active{transform:scale(.95);}
-  .chip.used{opacity:.4; text-decoration:line-through;}
-
-  /* 아이디어 워크북 */
-  .idea{background:#fff; border:2px solid var(--line); border-radius:18px; padding:16px; margin-top:14px;}
-  .idea .i-head{display:flex; align-items:center; gap:10px;}
-  .idea .i-no{flex:none; width:34px; height:34px; border-radius:50%; background:var(--sky); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Gaegu',sans-serif; font-size:18px; font-weight:700;}
-  .idea .i-head input{flex:1; border:2px solid var(--line); border-radius:12px; padding:9px 12px; font-family:'Gowun Dodum',sans-serif; font-size:15.5px;}
-  .idea input:focus{outline:none; border-color:var(--sky);}
-  .fill{display:flex; align-items:center; gap:8px; margin-top:9px; font-size:14.5px;}
-  .fill .f-label{flex:none; width:104px; font-family:'Gaegu',sans-serif; font-size:16px;}
-  .fill input{flex:1; border:2px solid #eee; border-radius:10px; padding:8px 11px; font-family:'Gowun Dodum',sans-serif; font-size:14.5px;}
-  .crit{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:9px; font-size:14px;}
-  .crit .c-label{flex:none; width:186px;}
-  .stars{display:flex; gap:2px;}
-  .stars button{border:none; background:none; cursor:pointer; font-size:21px; padding:2px; filter:grayscale(1); opacity:.4; transition:transform .08s;}
-  .stars button.on{filter:none; opacity:1;}
-  .stars button:active{transform:scale(1.2);}
-  .i-total{margin-top:8px; font-family:'Gaegu',sans-serif; font-size:16px; color:var(--orange);}
+  .chip{border:2px solid #ffd699; background:#fff; border-radius:999px; padding:8px 15px; font-size:14px; font-family:'Gowun Dodum',sans-serif;}
 
   .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
-  .abtn{border:none; cursor:pointer; font-family:'Gaegu',sans-serif; font-size:16px; padding:9px 20px; border-radius:999px; transition:transform .08s;}
-  .abtn:active{transform:scale(.96);}
-  .a-main{background:var(--sky); color:#fff;}
-  .a-sub{background:#fff; color:var(--soft); border:2px solid var(--line);}
 
   /* 교사 시연 */
   .demo-tag{display:inline-block; background:#eef6ff; color:#2563eb; border:1.5px solid #cfe3ff; font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; vertical-align:middle;}
@@ -158,57 +124,64 @@
   .next-banner .nb-t{font-family:'Gaegu',sans-serif; font-size:clamp(22px,4.5vw,29px);}
   .next-banner .nb-d{font-size:15px; opacity:.92; margin-top:6px;}
 
+  /* STEP 1~4 슬라이드 캐러셀 */
+  .car{margin-top:48px;}
+  .car-top{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .car-arrow{flex:none; border:2px solid var(--line); background:#fff; border-radius:999px; width:40px; height:40px; cursor:pointer;
+    font-size:18px; color:var(--soft); display:flex; align-items:center; justify-content:center; transition:background .15s, opacity .15s;}
+  .car-arrow:hover{background:#f0faff; color:#0284c7;}
+  .car-arrow:disabled{opacity:.35; cursor:default; pointer-events:none;}
+  .car-dots{flex:1; display:flex; justify-content:center; gap:8px;}
+  .car-dot{border:none; background:var(--line); width:11px; height:11px; border-radius:50%; cursor:pointer; padding:0; transition:transform .15s, background .15s;}
+  .car-dot.on{background:var(--sky); transform:scale(1.25);}
+  .car-viewport{overflow:hidden; border-radius:22px; transition:height .3s ease;}
+  .car-track{display:flex; transition:transform .45s cubic-bezier(.4,0,.2,1); align-items:flex-start;}
+  .car-track > *{flex:0 0 100%; max-width:100%; margin-top:0 !important;}
+  .car-track > header.hero{padding:clamp(24px,6vw,44px) clamp(16px,5vw,32px) 24px;}
+  @media (prefers-reduced-motion: reduce){ .car-track, .car-viewport{transition:none;} }
+
   footer{text-align:center; color:var(--soft); font-size:14px; padding:30px 16px 50px; border-top:2px solid var(--line); margin-top:40px;}
   .fade{opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s;}
   .fade.show{opacity:1; transform:none;}
-
-  /* PDF 저장용 인쇄 요약지 (평소엔 숨김, 인쇄할 땐 이것만 세로 한 장으로) */
-  #printSummary{display:none;}
-  #printSummary .ps-title{font-family:'Gaegu',sans-serif; font-size:24px; margin:0 0 8px; padding-bottom:6px; border-bottom:3px solid #111;}
-  #printSummary .ps-team{font-size:17px; font-weight:700; margin:8px 0 5px;}
-  #printSummary table.ps-roles{width:100%; border-collapse:collapse; margin:4px 0 2px; font-size:13px;}
-  #printSummary table.ps-roles th, #printSummary table.ps-roles td{border:1.5px solid #444; padding:4px 6px; text-align:center;}
-  #printSummary table.ps-roles th{background:#eee;}
-  #printSummary h4{font-family:'Gaegu',sans-serif; font-size:17px; margin:13px 0 5px; border-bottom:2px solid #333; padding-bottom:2px;}
-  #printSummary ol{margin:0; padding-left:1.3em; font-size:14px;}
-  #printSummary ol li{margin:.2em 0;}
-  #printSummary .ps-idea{margin:6px 0; padding:7px 10px; border:1.5px solid #888; border-radius:8px; font-size:13.5px; page-break-inside:avoid;}
-  #printSummary .ps-idea b{font-size:14.5px;}
-  #printSummary .ps-foot{margin-top:10px; font-size:12.5px;}
-  @media print{
-    @page{size:A4 portrait; margin:12mm;}
-    nav, header.hero, footer, main > section{display:none !important;}
-    body{background:#fff;}
-    main{max-width:none; margin:0; padding:0;}
-    #printSummary{display:block; color:#111; line-height:1.55;}
-  }
 </style>
 </head>
 <body>
 
 <nav>
   <span class="brand">🌊 잘찾앙 바꿔보카!!</span>
-  <a href="#road">여정</a>
-  <a href="#step1">① 팀 만들기</a>
-  <a href="#step2">② 문제 찾기</a>
-  <a href="#step3">③ 아이디어</a>
-  <a href="#step4">④ AI 맛보기</a>
+  <a href="javascript:void(0)" data-goto="0">🌊 시작</a>
+  <a href="javascript:void(0)" data-goto="1">여정</a>
+  <a href="javascript:void(0)" data-goto="2">① 팀 만들기</a>
+  <a href="javascript:void(0)" data-goto="3">② 문제 찾기</a>
+  <a href="javascript:void(0)" data-goto="4">③ 아이디어</a>
+  <a href="javascript:void(0)" data-goto="5">④ AI 맛보기</a>
   <a class="home" href="index.html">🤖 수업 도우미 ←</a>
 </nav>
 
-<header class="hero">
-  <span class="kicker">지역 사회를 바꾸는 팀 프로젝트 · 첫걸음</span>
-  <h1>우리가 잘찾앙 바꿔보카!! 🌊</h1>
-  <p class="sub">제주말로 <b>"우리가 잘 찾아서, 바꿔볼까!"</b><br>
-  오늘은 팀을 만들고, 우리 동네 문제를 찾고, 아이디어를 쏟아내는 날이에요.<br><b>결정은 다음에!</b> 오늘은 많이 내는 팀이 이기는 거예요. 😎</p>
-  <div class="badges">
-    <span class="badge">👥 한 팀 <b>5명 · 5가지 역할</b></span>
-    <span class="badge">✍️ <b>화면에 바로 쓰는</b> 워크북</span>
-    <span class="badge">🔧 이 아이디어, <b>나중에 진짜로 만들어요!</b></span>
-  </div>
-</header>
-
 <main>
+
+  <!-- STEP 0~4 : 슬라이드 캐러셀 (인트로 · 여정 · STEP1~4) -->
+  <div class="car">
+    <div class="car-top">
+      <button class="car-arrow" id="carPrev" aria-label="이전 단계">‹</button>
+      <div class="car-dots" id="carDots"></div>
+      <button class="car-arrow" id="carNext" aria-label="다음 단계">›</button>
+    </div>
+    <div class="car-viewport">
+    <div class="car-track" id="carTrack">
+
+  <header class="hero">
+    <span class="kicker">교사용 설명 자료 · 팀 프로젝트 첫걸음</span>
+    <h1>우리가 잘찾앙 바꿔보카!! 🌊</h1>
+    <p class="sub">이 화면은 <b>선생님이 보여주며 설명</b>하는 자료예요.<br>
+    학생 작성은 <b>워크북 PPT</b>에서!</p>
+    <div class="badges">
+      <span class="badge">👥 한 팀 <b>5명 · 5가지 역할</b></span>
+      <span class="badge">📝 학생 작성은 <b>워크북 PPT</b></span>
+      <span class="badge">🔧 오늘 아이디어, <b>나중에 진짜로 만들어요!</b></span>
+    </div>
+    <a class="wb-hero-btn" href="workbook.pptx" download>📥 워크북 PPT 다운로드</a>
+  </header>
 
   <!-- 여정 -->
   <section id="road">
@@ -229,30 +202,27 @@
   <section id="step1">
     <div class="sec-head fade">
       <div class="snum c2"><span class="lab">STEP</span><span class="no">1</span></div>
-      <div><h2>팀 만들기 & 역할 정하기</h2><div class="h-sub">약 10분 · 서로의 강점을 찾아서</div></div>
+      <div><h2>팀 만들기 & 역할 정하기</h2><div class="h-sub">약 10분</div></div>
     </div>
     <div class="card fade">
       <div class="howto">
-        <div class="ht">📌 어떻게 해요?</div>
+        <div class="ht">📌 이렇게 진행하세요</div>
         <ol>
-          <li>역할 카드 5개를 돌아가며 <b>소리 내어</b> 읽어요.</li>
-          <li>"○○는 이거 딱이야!" 하고 <b>서로 추천</b>해요.</li>
-          <li>정해지면 <b>카드에 이름</b>을 적고, 팀 이름도 지어요.</li>
+          <li>역할 카드 5개를 돌아가며 읽기</li>
+          <li>서로 추천하기</li>
+          <li>워크북 PPT에 이름 적기</li>
         </ol>
       </div>
       <div class="menu-grid">
-        <div class="role"><div class="r-emo">👑</div><div class="r-t">팀장</div><div class="r-d">회의 진행, 일정 관리, 발표 준비</div><div class="r-fit">친구들 얘기를 잘 듣고 정리하는 사람 딱!</div><input type="text" data-store="role_pm" placeholder="이름"></div>
-        <div class="role"><div class="r-emo">🔧</div><div class="r-t">하드웨어 전문가</div><div class="r-d">아두이노와 센서를 회로로 연결</div><div class="r-fit">조립·만들기 좋아하는 사람 딱!</div><input type="text" data-store="role_hw" placeholder="이름"></div>
-        <div class="role"><div class="r-emo">💻</div><div class="r-t">소프트웨어 전문가</div><div class="r-d">AI와 함께 코드 만들고 에러 잡기</div><div class="r-fit">오늘 바이브 코딩이 재밌었던 사람 딱!</div><input type="text" data-store="role_sw" placeholder="이름"></div>
-        <div class="role"><div class="r-emo">🎨</div><div class="r-t">디자이너</div><div class="r-d">회로를 보호하는 멋진 구조물 제작</div><div class="r-fit">그림·꾸미기·레고를 사랑하는 사람 딱!</div><input type="text" data-store="role_ds" placeholder="이름"></div>
-        <div class="role"><div class="r-emo">📊</div><div class="r-t">데이터 분석가</div><div class="r-d">센서가 보낸 숫자가 맞는지 검증</div><div class="r-fit">틀린 그림 찾기 잘하는 꼼꼼한 사람 딱!</div><input type="text" data-store="role_da" placeholder="이름"></div>
+        <div class="role"><div class="r-emo">👑</div><div class="r-t">팀장</div><div class="r-d">회의 진행, 발표 준비</div></div>
+        <div class="role"><div class="r-emo">🔧</div><div class="r-t">하드웨어</div><div class="r-d">아두이노·센서 연결</div></div>
+        <div class="role"><div class="r-emo">💻</div><div class="r-t">소프트웨어</div><div class="r-d">AI와 코드 만들기</div></div>
+        <div class="role"><div class="r-emo">🎨</div><div class="r-t">디자이너</div><div class="r-d">구조물 제작</div></div>
+        <div class="role"><div class="r-emo">📊</div><div class="r-t">데이터 분석가</div><div class="r-d">숫자 검증</div></div>
       </div>
-      <div class="board">
-        <div class="b-t">✏️ 우리 팀 이름</div>
-        <input type="text" data-store="team_name" placeholder="예: 바다지킴이, 파도수비대 …">
-        <div class="save-hint">💾 이 화면에 적는 건 자동 저장돼요. 새로고침해도 남아요!</div>
+      <div class="workbook-banner">
+        <span class="wb-t">📝 워크북 PPT에 적어요</span>
       </div>
-      <div class="tip">👩‍🏫 역할이 겹치면 가위바위보보다 <b>서로 추천하기</b>가 좋아요. 역할은 나중에 바꿀 기회가 있다고 안내하면 부담이 줄어요.</div>
     </div>
   </section>
 
@@ -260,33 +230,33 @@
   <section id="step2">
     <div class="sec-head fade">
       <div class="snum c3"><span class="lab">STEP</span><span class="no">2</span></div>
-      <div><h2>우리 동네 문제 찾기</h2><div class="h-sub">약 12분 · AI보다 먼저, 우리 머리로!</div></div>
+      <div><h2>우리 동네 문제 찾기</h2><div class="h-sub">약 12분</div></div>
     </div>
     <div class="card fade">
       <div class="howto">
-        <div class="ht">📌 어떻게 해요?</div>
+        <div class="ht">📌 이렇게 진행하세요</div>
         <ol>
-          <li>아래 질문을 보고 <b>한 사람이 하나씩</b> 돌아가며 말해요.</li>
-          <li>생각이 안 나면 <b>노란 문제 카드</b>를 열어 골라요.</li>
-          <li>제일 공감되는 <b>3개</b>를 아래 <b>📝 기록판</b>에 적어요. (쓰는 사람: 데이터 분석가!)</li>
+          <li>질문을 보고 한 사람씩 돌아가며 말하기</li>
+          <li>막히면 노란 문제 카드 열어 보기</li>
+          <li>공감되는 3개를 워크북 PPT에 적기</li>
         </ol>
       </div>
 
       <h3>🌊 이런 적 없었나요?</h3>
       <ul class="clean">
-        <li>🌀 태풍 올 때 <b>위험했던 곳</b>은?</li>
-        <li>🏖️ 바닷가·갯바위에서 <b>아찔했던 순간</b>은?</li>
-        <li>🐟 양식장, 배 타시는 분들의 <b>걱정거리</b>는?</li>
-        <li>🌫️ 안개 낀 날, 비 많이 온 날 <b>불편했던 것</b>은?</li>
-        <li>🚶 산책로·올레길에서 "여기 위험한데?" 싶었던 곳은?</li>
+        <li>🌀 태풍 올 때 위험했던 곳은?</li>
+        <li>🏖️ 바닷가·갯바위에서 아찔했던 순간은?</li>
+        <li>🐟 양식장, 배 타시는 분들의 걱정거리는?</li>
+        <li>🌫️ 안개·비 오는 날 불편했던 것은?</li>
+        <li>🚶 산책로·올레길에서 위험해 보였던 곳은?</li>
       </ul>
 
       <details class="pick locked" id="probPickDetails">
         <summary>
           <span class="pk-emo">🔒</span>
-          <span class="pk-txt"><span class="pk-t">문제 카드 (선생님 비밀번호 필요)</span><span class="pk-s">선생님이 알려준 비밀번호를 입력하면 열려요</span></span>
+          <span class="pk-txt"><span class="pk-t">문제 카드 (선생님 비밀번호 필요)</span><span class="pk-s">막힌 팀에게만 열어주세요</span></span>
         </summary>
-        <div class="pk-note">💡 여기 있는 건 <b>예시</b>예요. 마음에 드는 걸 고르고, 우리 동네 얘기로 살짝 바꿔도 좋아요! (우리가 가진 센서로 정말 만들 수 있는 것들만 모았어요)</div>
+        <div class="pk-note">💡 예시예요. 우리 동네 얘기로 바꿔도 좋아요! (가진 센서로 만들 수 있는 것만 모았어요)</div>
         <div class="chips">
           <button class="chip">태풍 때 해안도로·방파제에 물이 넘쳐요</button>
           <button class="chip">밀물 때 갯바위·갯벌에서 사람이 갇히는 사고가 나요</button>
@@ -306,16 +276,9 @@
         </div>
       </details>
 
-      <div class="board">
-        <div class="b-t">📝 우리 팀이 고른 문제 3가지</div>
-        <input type="text" data-store="prob1" placeholder="① 어떤 문제인가요?">
-        <textarea class="prob-detail" data-store="prob1d" placeholder="└ 더 하고 싶은 말 (선택) — 언제? 어디서? 누가 불편했나요?"></textarea>
-        <input type="text" data-store="prob2" placeholder="② 어떤 문제인가요?">
-        <textarea class="prob-detail" data-store="prob2d" placeholder="└ 더 하고 싶은 말 (선택)"></textarea>
-        <input type="text" data-store="prob3" placeholder="③ 어떤 문제인가요?">
-        <textarea class="prob-detail" data-store="prob3d" placeholder="└ 더 하고 싶은 말 (선택)"></textarea>
+      <div class="workbook-banner">
+        <span class="wb-t">📝 워크북 PPT에 적어요</span>
       </div>
-      <div class="tip">👩‍🏫 카드를 먼저 보여주면 생각이 카드에 갇혀요. <b>먼저 떠올리게 하고, 막힌 팀만</b> 카드를 열게 하세요.</div>
     </div>
   </section>
 
@@ -323,129 +286,82 @@
   <section id="step3">
     <div class="sec-head fade">
       <div class="snum c4"><span class="lab">STEP</span><span class="no">3</span></div>
-      <div><h2>아이디어 쏟아내기</h2><div class="h-sub">약 15분 · 마법의 문장으로 만들기</div></div>
+      <div><h2>아이디어 쏟아내기</h2><div class="h-sub">약 15분</div></div>
     </div>
 
     <div class="card fade">
       <h3>✨ 마법의 문장</h3>
-      <p style="text-align:center; font-family:'Gaegu',sans-serif; font-size:clamp(19px,4vw,26px); background:#f0faff; border-radius:16px; padding:14px;">
-        "<b style="color:#0284c7">___</b>을 알아채면 → <b style="color:#e0447e">___</b>해 주는 기계"
+      <p class="magic-line" style="background:#f0faff; border-radius:16px; padding:14px;">
+        "<b>___</b>을 알아채면 → <b class="do">___</b>해 주는 기계"
       </p>
       <div class="menu-grid">
-        <div class="mi"><div class="mi-t">👀 기계가 알아챌 수 있는 것</div><div class="mi-d">물 높이 · 흔들림 · 온도 · 습도 · 색깔…</div></div>
-        <div class="mi"><div class="mi-t">📢 기계가 해 줄 수 있는 것</div><div class="mi-d">소리 삑삑! · 불빛 반짝! · 글자 표시 · 팔처럼 움직이기</div></div>
+        <div class="mi"><div class="mi-t">👀 알아챌 수 있는 것</div><div class="mi-d">물 높이 · 흔들림 · 온도 · 습도 · 색깔…</div></div>
+        <div class="mi"><div class="mi-t">📢 해 줄 수 있는 것</div><div class="mi-d">소리 · 불빛 · 글자 표시 · 움직이기</div></div>
       </div>
-      <div class="point">💡 예시 — "물이 <b>차오르는 걸 알아채면</b> → <b>삑삑! 빨간불!</b> 해 주는 기계" = 침수 경보기 완성!<br>
-      🔧 정확한 부품은 <b>다음 시간에 공개</b>돼요. 오늘은 마음껏 상상해도 OK!</div>
-      <div class="board">
-        <div class="b-t">🗣️ 연습 한 번! 빈칸을 채우고 팀에게 소리 내어 읽어봐요</div>
-        <div class="magic-line">"<input type="text" data-store="magic_what" placeholder="알아챌 것">을 알아채면 → <input type="text" data-store="magic_do" placeholder="해 줄 것">해 주는 기계"</div>
-      </div>
+      <div class="point">💡 예시 — "물이 <b>차오르는 걸 알아채면</b> → <b>삑삑! 빨간불!</b>" = 침수 경보기!<br>
+      🔧 정확한 부품은 다음 시간에 공개돼요. 오늘은 마음껏 상상해도 OK!</div>
     </div>
 
     <div class="card fade">
       <div class="howto">
-        <div class="ht">📌 어떻게 해요?</div>
+        <div class="ht">📌 이렇게 진행하세요</div>
         <ol>
-          <li>STEP 2의 문제 하나를 골라 <b>마법의 문장</b>에 넣어 말해요.</li>
-          <li>좋은 아이디어 <b>3개</b>를 골라 아래 <b>1·2·3 칸</b>에 적어요. (이름은 재밌게!)</li>
-          <li>다 적으면 <b>기준 3개로 별점</b>을 매겨요. (⭐1개=글쎄… ~ ⭐5개=최고!) 별이 많으면 유력 후보!</li>
+          <li>문제 하나를 골라 마법의 문장에 넣어 말하기</li>
+          <li>좋은 아이디어 3개를 워크북 PPT에 적기</li>
+          <li>기준 3개로 별점 매기기 (별 많으면 유력 후보!)</li>
         </ol>
       </div>
 
       <details class="pick locked" id="ideaPickDetails">
         <summary>
           <span class="pk-emo">🔒</span>
-          <span class="pk-txt"><span class="pk-t">아이디어 카드 (선생님 비밀번호 필요)</span><span class="pk-s">선생님이 알려준 비밀번호를 입력하면 열려요</span></span>
+          <span class="pk-txt"><span class="pk-t">아이디어 카드 (선생님 비밀번호 필요)</span><span class="pk-s">막힌 팀에게만 열어주세요</span></span>
         </summary>
-        <div class="pk-note">💡 여기 있는 건 <b>예시</b>예요. 그대로 써도 되고, 이름이나 내용을 바꿔서 우리 팀만의 아이디어로 만들어도 좋아요! (우리가 가진 센서로 정말 만들 수 있는 것들만 모았어요)</div>
+        <div class="pk-note">💡 예시예요. 그대로 써도 되고 이름·내용을 바꿔도 좋아요!</div>
         <div class="chips">
-          <button class="chip" data-name="파도 감시대장" data-what="물이 기준보다 높이 차오르면" data-do="삑삑 소리 + 빨간불 켜기">🌊 파도 감시대장 — 물이 차오르면 경보! (수위 센서)</button>
-          <button class="chip" data-name="갯벌 구조대" data-what="밀물로 물이 갑자기 높아지면" data-do="사이렌 + 대피 안내 불빛 켜기">🏖️ 갯벌 구조대 — 밀물 오면 대피 알림! (수위 센서)</button>
-          <button class="chip" data-name="하천 물지킴이" data-what="하천·배수로 물이 갑자기 불어나면" data-do="경보음 + '접근 금지' 글자 표시">🏞️ 하천 물지킴이 — 물 불어나면 접근 금지! (수위 센서)</button>
-          <button class="chip" data-name="수조 지킴이" data-what="양식장 수조 물이 기준보다 줄어들면" data-do="알림 소리 + 화면에 물 높이 표시">🐟 수조 지킴이 — 수조 물 줄면 알림! (수위 센서)</button>
-          <button class="chip" data-name="흔들림 파수꾼" data-what="방파제나 다리가 심하게 흔들리면" data-do="빨간불 + '위험!' 글자 표시">🌉 흔들림 파수꾼 — 흔들리면 경고! (진동 센서)</button>
-          <button class="chip" data-name="배 흔들림 감시원" data-what="배가 파도에 심하게 흔들리면" data-do="빨간불 + 경고음 울리기">⛵ 배 흔들림 감시원 — 배가 흔들리면 경고! (진동 센서)</button>
-          <button class="chip" data-name="표지판 지킴이" data-what="표지판·시설물이 심하게 흔들리면" data-do="노란불 깜빡 + '점검 필요' 글자 표시">🚧 표지판 지킴이 — 흔들리면 점검 알림! (진동 센서)</button>
-          <button class="chip" data-name="바다색 지킴이" data-what="바닷물 색깔이 평소와 다르게 변하면(적조 등)" data-do="경고음 + 화면에 글자 표시">🎨 바다색 지킴이 — 색깔 변하면 알림! (컬러 센서)</button>
-          <button class="chip" data-name="기름 감시선" data-what="바닷물 색이 기름처럼 번들거리게 변하면" data-do="경보음 + '기름 의심' 글자 표시">🛢️ 기름 감시선 — 기름 유출 의심 알림! (컬러 센서)</button>
-          <button class="chip" data-name="물빛 관찰자" data-what="양식장 물빛이 평소보다 탁해지면" data-do="노란불 + 알림 소리 울리기">🐠 물빛 관찰자 — 물빛 탁해지면 알림! (컬러 센서)</button>
-          <button class="chip" data-name="폭염 신호등" data-what="모래사장·갯바위 표면이 위험할 만큼 뜨거워지면" data-do="모터로 깃발 흔들기 + 경보음 울리기">🔥 폭염 신호등 — 너무 뜨거우면 경고! (비접촉 온도 센서)</button>
-          <button class="chip" data-name="뜨거운 차 알림이" data-what="세워둔 차 안 온도가 위험하게 오르면" data-do="경보음 + 화면에 온도 숫자 표시">🚗 뜨거운 차 알림이 — 차 안 뜨거우면 경보! (비접촉 온도 센서)</button>
-          <button class="chip" data-name="온도 지킴이" data-what="양식장 물 온도가 갑자기 확 변하면" data-do="화면에 숫자 표시 + 알림 소리">🌡️ 온도 지킴이 — 온도 급변 알림! (비접촉 온도 센서)</button>
-          <button class="chip" data-name="안개 알림이" data-what="습도가 갑자기 확 높아지면(안개 예고)" data-do="노란불 깜빡이며 경고음 울리기">🌫️ 안개 알림이 — 습도 급상승 경고! (온습도 센서)</button>
-          <button class="chip" data-name="창고 습기 감시원" data-what="포구 창고 안 습도가 계속 높으면" data-do="모터로 환풍 팬 돌리기 + 알림 소리">📦 창고 습기 감시원 — 눅눅하면 환풍! (온습도 센서)</button>
+          <button class="chip">🌊 파도 감시대장 — 물이 차오르면 경보! (수위 센서)</button>
+          <button class="chip">🏖️ 갯벌 구조대 — 밀물 오면 대피 알림! (수위 센서)</button>
+          <button class="chip">🏞️ 하천 물지킴이 — 물 불어나면 접근 금지! (수위 센서)</button>
+          <button class="chip">🐟 수조 지킴이 — 수조 물 줄면 알림! (수위 센서)</button>
+          <button class="chip">🌉 흔들림 파수꾼 — 흔들리면 경고! (진동 센서)</button>
+          <button class="chip">⛵ 배 흔들림 감시원 — 배가 흔들리면 경고! (진동 센서)</button>
+          <button class="chip">🚧 표지판 지킴이 — 흔들리면 점검 알림! (진동 센서)</button>
+          <button class="chip">🎨 바다색 지킴이 — 색깔 변하면 알림! (컬러 센서)</button>
+          <button class="chip">🛢️ 기름 감시선 — 기름 유출 의심 알림! (컬러 센서)</button>
+          <button class="chip">🐠 물빛 관찰자 — 물빛 탁해지면 알림! (컬러 센서)</button>
+          <button class="chip">🔥 폭염 신호등 — 너무 뜨거우면 경고! (비접촉 온도 센서)</button>
+          <button class="chip">🚗 뜨거운 차 알림이 — 차 안 뜨거우면 경보! (비접촉 온도 센서)</button>
+          <button class="chip">🌡️ 온도 지킴이 — 온도 급변 알림! (비접촉 온도 센서)</button>
+          <button class="chip">🌫️ 안개 알림이 — 습도 급상승 경고! (온습도 센서)</button>
+          <button class="chip">📦 창고 습기 감시원 — 눅눅하면 환풍! (온습도 센서)</button>
         </div>
       </details>
 
-      <div class="idea">
-        <div class="i-head"><div class="i-no">1</div><input type="text" data-store="idea1" placeholder="아이디어 이름 (예: 파도 감시대장)"></div>
-        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i1what" placeholder="예: 물이 기준보다 높이 차오르면"></div>
-        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i1do" placeholder="예: 삑삑 소리 + 빨간불 + 화면에 '위험'"></div>
-        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i1c1"></span></div>
-        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i1c2"></span></div>
-        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i1c3"></span></div>
-        <div class="i-total" data-total="1"></div>
+      <div class="point">🔍 조금 엉성해도 괜찮아요! "무엇을 알아채고 → 무엇을 해 줄지"까지만 하면 성공.<br>
+      센서의 진짜 능력과 기준 숫자 정하기는 <b>다음 시간에 보강</b>해요.</div>
+      <div class="workbook-banner">
+        <span class="wb-t">📝 워크북 PPT에 적어요</span>
       </div>
-      <div class="idea">
-        <div class="i-head"><div class="i-no">2</div><input type="text" data-store="idea2" placeholder="아이디어 이름"></div>
-        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i2what" placeholder="무엇을 알아채면?"></div>
-        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i2do" placeholder="무엇을 해 줘요?"></div>
-        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i2c1"></span></div>
-        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i2c2"></span></div>
-        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i2c3"></span></div>
-        <div class="i-total" data-total="2"></div>
-      </div>
-      <div class="idea">
-        <div class="i-head"><div class="i-no">3</div><input type="text" data-store="idea3" placeholder="아이디어 이름"></div>
-        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i3what" placeholder="무엇을 알아채면?"></div>
-        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i3do" placeholder="무엇을 해 줘요?"></div>
-        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i3c1"></span></div>
-        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i3c2"></span></div>
-        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i3c3"></span></div>
-        <div class="i-total" data-total="3"></div>
-      </div>
-
-      <div class="point">🔍 <b>조금 엉성해도 괜찮아요!</b> 오늘은 "무엇을 알아채고 → 무엇을 해 줄지"까지만 하면 성공.
-      센서의 <b>진짜 이름과 능력</b>(얼마나 멀리? 얼마나 정확히?), 그리고 <b>"얼마나 되면 위험?" 기준 숫자</b> 정하기는 <b>다음 시간에 보강</b>해요.</div>
-      <div class="board" id="checkBoard">
-        <div class="b-t">✅ 제출 전에 확인해요! (다 하면 저절로 체크돼요)</div>
-        <ul class="checks">
-          <li data-check="team"><span class="ck">⬜</span> 팀 이름을 지었어요</li>
-          <li data-check="roles"><span class="ck">⬜</span> 역할 5개에 모두 이름을 적었어요</li>
-          <li data-check="probs"><span class="ck">⬜</span> 우리 동네 문제 3가지를 적었어요</li>
-          <li data-check="ideas"><span class="ck">⬜</span> 아이디어 3개 (이름 + 알아채면 + 해 줘요) 를 채웠어요</li>
-          <li data-check="stars"><span class="ck">⬜</span> 아이디어마다 별점 3줄을 매겼어요</li>
-        </ul>
-      </div>
-      <div class="btnrow">
-        <button class="abtn a-main" onclick="exportPDF()">📄 PDF로 저장하기</button>
-        <button class="abtn a-sub" onclick="resetBoard()">🗑️ 기록 지우기</button>
-      </div>
-      <div class="save-hint">📄 버튼을 누르면 인쇄 창이 열려요 → <b>대상(프린터)에서 'PDF로 저장'</b>을 골라 저장! 그다음 우리 반 <b>패들렛(Padlet)</b>에 올려서 제출해요. 이 기록으로 다음 시간에 최종 결정!</div>
       <div class="point">💡 <b>결정은 다음 시간에 우리가!</b> 밤새 더 좋은 생각이 나면 바꿔도 돼요.</div>
     </div>
   </section>
-
-  <!-- PDF 저장용 인쇄 요약지 (화면엔 안 보이고, 인쇄/PDF 저장할 때만 나타남) -->
-  <div id="printSummary"></div>
 
   <!-- STEP 4 : 교사 시연 -->
   <section id="step4">
     <div class="sec-head fade">
       <div class="snum c5"><span class="lab">STEP</span><span class="no">4</span></div>
-      <div><h2>AI 비서 맛보기 <span class="demo-tag">👩‍🏫 선생님 시연</span></h2><div class="h-sub">약 8분 · 오늘은 구경만! 다음 시간엔 우리가 직접!</div></div>
+      <div><h2>AI 비서 맛보기 <span class="demo-tag">👩‍🏫 선생님 시연</span></h2><div class="h-sub">약 8분 · 오늘은 구경만!</div></div>
     </div>
     <div class="card fade">
       <div class="howto">
-        <div class="ht">🔮 다음 차시에는 이렇게 진행됩니다</div>
+        <div class="ht">🔮 다음 차시 예고</div>
         <ol>
-          <li>센서 5총사의 <b>진짜 이름과 능력</b>(측정 범위·한계)을 배워요.</li>
-          <li>지금 선생님이 시연하는 것처럼, <b>우리 팀이 직접 AI 비서에게 물어보며</b> 아이디어를 다듬어요.</li>
-          <li>"얼마나 되면 위험?" <b>기준 숫자</b>를 정하고, 아이디어를 <b>하나로 결정</b>해서 만들기 시작!</li>
+          <li>센서 5총사의 진짜 능력(측정 범위·한계) 배우기</li>
+          <li>오늘처럼 우리 팀이 직접 AI 비서에게 물어보며 다듬기</li>
+          <li>기준 숫자 정하고 아이디어 하나로 결정 → 만들기 시작!</li>
         </ol>
       </div>
-      <p>여러분이 낸 아이디어, <b>AI 비서는 뭐라고 할까요?</b> 오늘은 선생님이 화면으로 보여줄게요. 다음 시간에는 <b>진짜 센서 목록</b>을 가지고 여러분이 직접 해 봅니다!</p>
+      <p>여러분이 낸 아이디어, <b>AI 비서는 뭐라고 할까요?</b> 오늘은 선생님이 화면으로 보여줄게요.</p>
 
       <div class="ptext">우리는 해안 지역의 문제를 해결하는 프로젝트를 하고 있어. 특히 [팀이 고른 문제]가 걱정이야. 물 높이·흔들림·온도·습도·색깔을 감지하는 센서와, 소리·불빛·글자 표시·모터가 있는 아두이노 키트로 만들 수 있는 창의적인 프로젝트 아이디어 3개를 제안해 줘. 각 아이디어의 주제, 해결하려는 문제, 작동 원리를 중학생이 이해할 수 있게 알려줘.</div>
       <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사 (선생님용)</button>
@@ -453,17 +369,13 @@
       <div class="ptext" style="margin-top:14px">아이디어가 조금 어려워. 중학생 팀이 만들 수 있게 더 간단하게 다시 제안해 줘.</div>
       <button class="copy" onclick="copyPrompt(this)">📋 수정 프롬프트 복사 (선생님용)</button>
 
-      <div class="point">💡 시연하며 꼭 한마디 — "AI는 <b>제안</b>만 해요. 뭐가 우리 동네에 필요한지는 <b>AI가 몰라요, 우리만 알아요.</b> 그래서 결정은 언제나 우리!"</div>
-      <div class="tip">👩‍🏫 한 팀의 문제를 [ ]에 넣어 시연하면 아이들 몰입이 확 올라가요. AI 제안과 아이들 아이디어가 비슷하면 "여러분이 AI만큼 잘했네!"라고 칭찬해 주세요.</div>
-    </div>
-
-    <div class="next-banner fade">
-      <div class="nb-t">🔌 다음 시간 예고</div>
-      <div class="nb-d">① 센서 5총사의 <b>진짜 이름과 능력</b>(측정 범위·한계)을 배우고<br>
-      ② "얼마나 되면 위험?" <b>기준 숫자</b>를 정해서 오늘 아이디어를 <b>보강</b>하고<br>
-      ③ <b>하나로 결정</b>한 뒤, 아두이노로 <b>진짜 만들기</b> 시작!</div>
+      <div class="point">💡 시연하며 한마디 — "AI는 <b>제안</b>만 해요. 뭐가 우리 동네에 필요한지는 <b>우리만 알아요.</b> 결정은 언제나 우리!"</div>
     </div>
   </section>
+
+    </div>
+    </div>
+  </div>
 
 </main>
 
@@ -479,47 +391,6 @@
       setTimeout(()=>btn.textContent=o,1400);
     }).catch(()=>{ btn.textContent='복사 실패 😢'; });
   }
-
-  /* 자동 저장 */
-  const KEY='leadnext_team_board';
-  let store={};
-  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ store={}; }
-  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} updateChecklist(); }
-
-  /* ✅ 제출 전 자동 체크리스트 */
-  const filled=k=>!!(store[k]||'').trim();
-  const CHECKS={
-    team : ()=>filled('team_name'),
-    roles: ()=>['role_pm','role_hw','role_sw','role_ds','role_da'].every(filled),
-    probs: ()=>['prob1','prob2','prob3'].every(filled),
-    ideas: ()=>[1,2,3].every(n=>['idea'+n,'i'+n+'what','i'+n+'do'].every(filled)),
-    stars: ()=>[1,2,3].every(n=>[1,2,3].every(c=>(store['i'+n+'c'+c]||0)>0))
-  };
-  function updateChecklist(){
-    document.querySelectorAll('#checkBoard [data-check]').forEach(li=>{
-      const ok=CHECKS[li.dataset.check]();
-      li.classList.toggle('done', ok);
-      li.querySelector('.ck').textContent = ok ? '✅' : '⬜';
-    });
-  }
-
-  document.querySelectorAll('input[data-store], textarea[data-store]').forEach(el=>{
-    const k=el.dataset.store;
-    if(store[k]) el.value=store[k];
-    el.addEventListener('input',()=>{ store[k]=el.value; save(); });
-  });
-
-  /* 문제 카드 → 빈 칸에 자동 입력 */
-  document.querySelectorAll('#step2 .chip').forEach(ch=>{
-    ch.addEventListener('click',()=>{
-      const slots=['prob1','prob2','prob3'];
-      const empty=slots.find(k=>!(store[k]||'').trim());
-      if(!empty){ alert('문제 칸 3개가 다 찼어요! 지우고 싶은 칸을 비운 뒤 다시 눌러요.'); return; }
-      store[empty]=ch.textContent; save();
-      document.querySelector('input[data-store=\"'+empty+'\"]').value=ch.textContent;
-      ch.classList.add('used');
-    });
-  });
 
   /* 🔒 문제/아이디어 카드 비밀번호 잠금 — 선생님만 이 값들을 바꿔서 사용하세요! */
   const PROB_CARD_PASSWORD = '0714';
@@ -546,79 +417,80 @@
   lockPickCard('probPickDetails', PROB_CARD_PASSWORD, '문제 카드');
   lockPickCard('ideaPickDetails', IDEA_CARD_PASSWORD, '아이디어 카드');
 
-  /* 아이디어 카드 → 빈 아이디어 칸에 자동 입력 */
-  document.querySelectorAll('#step3 .chip').forEach(ch=>{
-    ch.addEventListener('click',()=>{
-      const idx=[1,2,3].find(n=>!(store['idea'+n]||'').trim());
-      if(!idx){ alert('아이디어 칸 3개가 다 찼어요! 지우고 싶은 칸을 비운 뒤 다시 눌러요.'); return; }
-      const name=ch.dataset.name, what=ch.dataset.what, doit=ch.dataset.do;
-      store['idea'+idx]=name; store['i'+idx+'what']=what; store['i'+idx+'do']=doit; save();
-      document.querySelector('input[data-store=\"idea'+idx+'\"]').value=name;
-      document.querySelector('input[data-store=\"i'+idx+'what\"]').value=what;
-      document.querySelector('input[data-store=\"i'+idx+'do\"]').value=doit;
-      ch.classList.add('used');
-    });
-  });
-
-  /* 별점 */
-  document.querySelectorAll('.stars').forEach(box=>{
-    const k=box.dataset.store;
-    for(let i=1;i<=5;i++){
-      const b=document.createElement('button');
-      b.type='button'; b.textContent='⭐'; b.dataset.v=i;
-      b.addEventListener('click',()=>{ store[k]=(store[k]===i?0:i); save(); paint(); });
-      box.appendChild(b);
-    }
-  });
-  function paint(){
-    document.querySelectorAll('.stars').forEach(box=>{
-      const v=store[box.dataset.store]||0;
-      box.querySelectorAll('button').forEach(b=>b.classList.toggle('on', +b.dataset.v<=v));
-    });
-    for(let n=1;n<=3;n++){
-      const t=(store['i'+n+'c1']||0)+(store['i'+n+'c2']||0)+(store['i'+n+'c3']||0);
-      const el=document.querySelector('[data-total="'+n+'"]');
-      if(el) el.textContent = t>0 ? '합계 ⭐ '+t+'점 / 15점' : '';
-    }
-  }
-  paint();
-  updateChecklist();
-
-  /* PDF로 저장 (인쇄 요약지를 채운 뒤 인쇄창 열기 → '대상: PDF로 저장' 선택) */
-  function exportPDF(){
-    const g=k=>(store[k]||'').trim() || '(비어있음)';
-    let html = '<div class="ps-title">🌊 우리가 잘찾앙 바꿔보카!! — 팀 기록지</div>';
-    html += '<div class="ps-team">팀 이름: '+g('team_name')+'</div>';
-    html += '<table class="ps-roles">'
-          + '<tr><th>👑 팀장</th><th>🔧 하드웨어</th><th>💻 소프트웨어</th><th>🎨 디자이너</th><th>📊 데이터</th></tr>'
-          + '<tr><td>'+g('role_pm')+'</td><td>'+g('role_hw')+'</td><td>'+g('role_sw')+'</td><td>'+g('role_ds')+'</td><td>'+g('role_da')+'</td></tr>'
-          + '</table>';
-    const probLi=n=>{
-      const d=(store['prob'+n+'d']||'').trim();
-      return '<li>'+g('prob'+n)+(d?'<br><span style="font-size:12.5px;color:#444;">└ '+d+'</span>':'')+'</li>';
-    };
-    html += '<h4>📝 우리 동네 문제 3가지</h4><ol>'+probLi(1)+probLi(2)+probLi(3)+'</ol>';
-    html += '<h4>💡 아이디어 도출 3가지</h4>';
-    for(let n=1;n<=3;n++){
-      const t=(store['i'+n+'c1']||0)+(store['i'+n+'c2']||0)+(store['i'+n+'c3']||0);
-      html += '<div class="ps-idea"><b>'+n+'. '+g('idea'+n)+'</b> — 별점 합계 ⭐'+t+'/15<br>'
-            + '👀 알아채면: '+g('i'+n+'what')+'<br>📢 해 줘요: '+g('i'+n+'do')+'</div>';
-    }
-    html += '<div class="ps-foot">✅ 최종 결정은 다음 시간에! 센서의 진짜 능력을 배우고 아이디어를 보강한 뒤 하나로 정해요.</div>';
-    document.getElementById('printSummary').innerHTML = html;
-    window.print();
-  }
-
-  function resetBoard(){
-    if(!confirm('우리 팀 기록을 모두 지울까요?')) return;
-    store={}; save();
-    document.querySelectorAll('input[data-store], textarea[data-store]').forEach(el=>el.value='');
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
-    paint();
-  }
-
+  // 캐러셀(.car) 안의 슬라이드는 가로로 접혀 있어 스크롤 교차 관찰이 되지 않으므로 바로 보이게 하고,
+  // 그 밖(여정 섹션 등)은 기존처럼 스크롤에 따라 서서히 나타나게 한다.
   const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}})},{threshold:.12});
-  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.fade').forEach(el=>{
+    if(el.closest('.car')) el.classList.add('show');
+    else obs.observe(el);
+  });
+
+  /* STEP 1~4 슬라이드 캐러셀 (좌우로 넘기기) */
+  (function(){
+    const track = document.getElementById('carTrack');
+    const viewport = track.parentElement;
+    const slides = Array.from(track.children); // step1~4 section
+    const dotsWrap = document.getElementById('carDots');
+    const prevBtn = document.getElementById('carPrev');
+    const nextBtn = document.getElementById('carNext');
+    const navLinks = document.querySelectorAll('nav a[data-goto]');
+    let cur = 0;
+
+    slides.forEach((_, i)=>{
+      const d = document.createElement('button');
+      d.type='button'; d.className='car-dot'; d.setAttribute('aria-label', (i+1)+'단계로 이동');
+      d.addEventListener('click', ()=>goTo(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function setHeight(){
+      viewport.style.height = slides[cur].offsetHeight + 'px';
+    }
+    function render(){
+      track.style.transform = 'translateX(-'+(cur*100)+'%)';
+      dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+      navLinks.forEach(a=>a.style.color = (+a.dataset.goto===cur ? '#0284c7' : ''));
+      prevBtn.disabled = cur===0;
+      nextBtn.disabled = cur===slides.length-1;
+      setHeight();
+    }
+    function goTo(i){
+      cur = Math.max(0, Math.min(slides.length-1, i));
+      render();
+    }
+
+    prevBtn.addEventListener('click', ()=>goTo(cur-1));
+    nextBtn.addEventListener('click', ()=>goTo(cur+1));
+    navLinks.forEach(a=>a.addEventListener('click', ()=>{
+      goTo(+a.dataset.goto);
+      viewport.scrollIntoView({behavior:'smooth', block:'start'});
+    }));
+
+    // 키보드 좌우 화살표 (입력칸에 포커스 중일 땐 무시)
+    document.addEventListener('keydown', e=>{
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if(tag==='INPUT' || tag==='TEXTAREA') return;
+      if(e.key==='ArrowLeft') goTo(cur-1);
+      if(e.key==='ArrowRight') goTo(cur+1);
+    });
+
+    // 터치 스와이프
+    let touchX=null;
+    viewport.addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; }, {passive:true});
+    viewport.addEventListener('touchend', e=>{
+      if(touchX===null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if(Math.abs(dx) > 45){ dx<0 ? goTo(cur+1) : goTo(cur-1); }
+      touchX=null;
+    }, {passive:true});
+
+    // 슬라이드 안에서 details(펼침) 열고 닫을 때 높이 재계산
+    track.querySelectorAll('details').forEach(d=>d.addEventListener('toggle', setHeight));
+    window.addEventListener('resize', setHeight);
+
+    render();
+  })();
 </script>
 </body>
 </html>

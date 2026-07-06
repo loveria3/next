@@ -102,6 +102,24 @@
             cursor: not-allowed;
         }
 
+        /* 홈으로 가기 버튼 */
+        .home-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            text-decoration: none;
+            color: #0071e3;
+            font-size: 14px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            z-index: 10;
+        }
+
         /* 다시 시작 버튼 (미니멀 텍스트 링크 스타일) */
         #resetBtn {
             background-color: transparent;
@@ -132,6 +150,8 @@
     </style>
 </head>
 <body>
+
+<a class="home-link" href="index.html">🏠 홈으로</a>
 
 <div class="game-container">
     <h2>숫자 맞추기</h2>

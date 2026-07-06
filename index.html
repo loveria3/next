@@ -8,100 +8,114 @@
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
   :root{
-    --purple:#7c5cff; --pink:#ff6ba6; --mint:#2ec4b6; --yellow:#ffd23f; --sky:#38bdf8; --orange:#ff8f3f;
+    --purple:#7c5cff; --pink:#ff6ba6; --mint:#2ec4b6; --sky:#38bdf8; --orange:#ff8f3f;
     --ink:#2b2b3a; --soft:#6b6b80; --line:#ececf4; --bg:#ffffff;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{margin:0; background:var(--bg); color:var(--ink); font-family:'Gowun Dodum',system-ui,'Malgun Gothic',sans-serif; line-height:1.7;}
 
-  /* NAV */
   nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.93); backdrop-filter:blur(8px);
     border-bottom:2px solid var(--line); display:flex; gap:3px; align-items:center; flex-wrap:wrap; padding:10px clamp(14px,4vw,40px);}
   nav .brand{font-family:'Gaegu',sans-serif; font-weight:700; font-size:21px; color:var(--purple); margin-right:auto;}
   nav a{text-decoration:none; color:var(--soft); font-size:14px; padding:6px 10px; border-radius:999px; white-space:nowrap;}
   nav a:hover{background:#f1eeff; color:var(--purple);}
+  nav a.home{border:1.5px solid var(--line);}
 
-  /* HERO */
-  header.hero{padding:clamp(34px,7vw,72px) clamp(16px,5vw,40px) 40px; text-align:center; background:radial-gradient(1200px 300px at 50% -60px, #f3efff 0%, #ffffff 70%);}
+  header.hero{padding:clamp(34px,7vw,60px) clamp(16px,5vw,40px) 34px; text-align:center; background:radial-gradient(1200px 300px at 50% -60px, #f3efff 0%, #ffffff 70%);}
   header .kicker{display:inline-block; background:#f1eeff; color:var(--purple); font-weight:700; padding:6px 16px; border-radius:999px; font-size:14px; margin-bottom:14px;}
-  header h1{font-family:'Gaegu',sans-serif; font-size:clamp(34px,7vw,60px); margin:.1em 0; line-height:1.1;}
-  header p.sub{color:var(--soft); font-size:clamp(15px,2.6vw,19px); margin:.4em auto 0; max-width:660px;}
-  .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:22px;}
+  header h1{font-family:'Gaegu',sans-serif; font-size:clamp(34px,8vw,58px); margin:.1em 0; line-height:1.15;}
+  header p.sub{color:var(--soft); font-size:clamp(15px,2.6vw,18px); margin:.4em auto 0; max-width:640px;}
+  .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
+  .wb-hero-btn{display:inline-block; margin-top:20px; text-decoration:none; background:var(--sky); color:#fff;
+    font-family:'Gaegu',sans-serif; font-size:18px; padding:12px 28px; border-radius:999px; box-shadow:0 8px 18px rgba(56,189,248,.3);}
   .badge{background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 14px; font-size:14px; color:var(--soft);}
   .badge b{color:var(--ink);}
 
   main{max-width:900px; margin:0 auto; padding:10px clamp(16px,5vw,32px) 80px;}
 
-  /* SECTION HEAD with LEFT slide chip */
-  section{margin-top:52px;}
+  section{margin-top:48px;}
   .sec-head{display:flex; align-items:center; gap:16px; margin-bottom:8px;}
   .snum{flex:none; width:74px; min-height:66px; border-radius:16px; color:#fff; display:flex; flex-direction:column;
     align-items:center; justify-content:center; font-family:'Gaegu',sans-serif; box-shadow:0 8px 18px rgba(90,70,180,.18); padding:6px 4px;}
-  .snum .lab{font-size:11px; opacity:.95; letter-spacing:.02em;}
+  .snum .lab{font-size:11px; opacity:.95;}
   .snum .no{font-size:24px; font-weight:700; line-height:1;}
-  .snum .no.rng{font-size:15px;}
   .c1{background:linear-gradient(135deg,var(--purple),#a78bfa);}
-  .c2{background:linear-gradient(135deg,var(--pink),#fda4d0);}
+  .c2{background:linear-gradient(135deg,var(--mint),#5eead4);}
   .c3{background:linear-gradient(135deg,var(--sky),#7dd3fc);}
-  .c4{background:linear-gradient(135deg,var(--mint),#5eead4);}
+  .c4{background:linear-gradient(135deg,var(--pink),#fda4d0);}
   .c5{background:linear-gradient(135deg,var(--orange),#fbbf24);}
   .c6{background:linear-gradient(135deg,#f472b6,#c084fc);}
-  .sec-head h2{font-family:'Gaegu',sans-serif; font-size:clamp(24px,5vw,36px); margin:0;}
+  .sec-head h2{font-family:'Gaegu',sans-serif; font-size:clamp(24px,5vw,34px); margin:0;}
   .sec-head .h-sub{color:var(--soft); font-size:14px; margin-top:2px;}
 
-  /* CARDS */
   .card{background:#fff; border:2px solid var(--line); border-radius:22px; padding:clamp(18px,3vw,26px); margin-top:16px; box-shadow:0 10px 30px rgba(90,70,180,.06);}
-  .card h3{font-family:'Gaegu',sans-serif; font-size:22px; margin:.1em 0 .5em; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .card h3{font-family:'Gaegu',sans-serif; font-size:21px; margin:.1em 0 .4em;}
   .lead{background:#faf9ff; border:2px dashed #ded7ff;}
 
-  .demo{display:inline-block; background:#eef6ff; color:#2563eb; border:1.5px solid #cfe3ff; font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px;}
-  .access{background:linear-gradient(135deg,#fff7ea,#ffeccb); border:2px solid #ffd699; border-radius:18px; padding:16px 18px; margin-top:16px; font-size:15px;}
-  .access b{color:#c47f00;}
+  .howto{background:#f5f3ff; border:2px solid #e3ddff; border-radius:16px; padding:12px 16px; margin:10px 0 4px;}
+  .howto .ht{font-family:'Gaegu',sans-serif; font-size:17px; color:var(--purple);}
+  .howto ol{margin:.3em 0 0; padding-left:1.3em; font-size:15px;}
+  .howto ol li{margin:.15em 0;}
 
-  .menu-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:6px;}
-  .mi{border:2px solid var(--line); border-radius:16px; padding:14px; background:#fff;}
-  .mi .mi-t{font-family:'Gaegu',sans-serif; font-size:19px; display:flex; align-items:center; gap:8px;}
-  .mi .mi-d{font-size:14px; color:var(--soft); margin-top:4px;}
+  .menu-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); margin-top:10px;}
+  .mi{border:2px solid var(--line); border-radius:16px; padding:13px; background:#fff;}
+  .mi .mi-t{font-family:'Gaegu',sans-serif; font-size:18px;}
+  .mi .mi-d{font-size:13.5px; color:var(--soft); margin-top:4px;}
 
   .pcard{border:2px solid var(--line); border-radius:20px; padding:16px; margin-top:14px; background:#fff;}
   .pcard .p-badge{display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:999px; margin-bottom:8px;}
   .b-first{background:#eafaf3; color:#0f9d6b;}
   .b-edit{background:#fff2f6; color:#e0447e;}
-  .b-step{background:#f1eeff; color:var(--purple);}
-  .b-rep{background:#fff7e6; color:#c47f00;}
-  .ptext{white-space:pre-wrap; background:#0f1226; color:#e7e9ff; border-radius:14px; padding:14px 16px; font-size:15px; line-height:1.65; font-family:'Gowun Dodum',sans-serif;}
+  .ptext{white-space:pre-wrap; background:#0f1226; color:#e7e9ff; border-radius:14px; padding:14px 16px; font-size:15px; line-height:1.65;}
   .copy{margin-top:10px; border:none; cursor:pointer; background:var(--purple); color:#fff; font-family:'Gaegu',sans-serif; font-size:16px; padding:8px 18px; border-radius:999px; transition:transform .08s;}
   .copy:active{transform:scale(.96);}
 
   details.result{margin-top:12px; border:2px solid #eee; border-radius:14px; overflow:hidden; background:#fcfcff;}
-  details.result summary{cursor:pointer; list-style:none; padding:12px 16px; font-family:'Gaegu',sans-serif; font-size:17px; color:var(--mint); display:flex; align-items:center; gap:8px; user-select:none;}
+  details.result summary{cursor:pointer; list-style:none; padding:12px 16px; font-family:'Gaegu',sans-serif; font-size:16px; color:var(--mint); display:flex; align-items:center; gap:8px; user-select:none;}
   details.result summary::-webkit-details-marker{display:none;}
   details.result summary .chev{margin-left:auto; transition:transform .2s;}
   details.result[open] summary .chev{transform:rotate(180deg);}
-  .result-body{padding:0 16px 16px; font-size:15px;}
+  .result-body{padding:0 16px 16px; font-size:14.5px;}
   .result-body .rlabel{font-size:13px; color:var(--soft); margin:6px 0 8px;}
-  .out{white-space:pre-wrap; background:#fff; border:1px solid #eee; border-radius:12px; padding:14px; font-size:14.5px;}
-  .imgph{border:2px dashed #d9d2ff; border-radius:14px; padding:22px; text-align:center; background:#faf8ff;}
-  .imgph .big{font-size:52px;}
-  table.sched{width:100%; border-collapse:collapse; font-size:14px; background:#fff; border-radius:12px; overflow:hidden;}
-  table.sched th,table.sched td{border:1px solid #eee; padding:8px 10px; text-align:center;}
+  .out{white-space:pre-wrap; background:#fff; border:1px solid #eee; border-radius:12px; padding:14px; font-size:14px;}
+  table.sched{width:100%; border-collapse:collapse; font-size:13.5px; background:#fff; border-radius:12px; overflow:hidden;}
+  table.sched th,table.sched td{border:1px solid #eee; padding:7px 9px; text-align:center;}
   table.sched th{background:#f1eeff; color:var(--purple);}
   table.sched td.subj{text-align:left;}
-  .point{margin-top:12px; background:#fffdf0; border:2px solid #ffeaa0; border-radius:14px; padding:12px 16px; font-size:14.5px;}
+  .point{margin-top:12px; background:#fffdf0; border:2px solid #ffeaa0; border-radius:14px; padding:11px 15px; font-size:14.5px;}
   .point b{color:#b8860b;}
-  .tip{background:#f1eeff; border-radius:14px; padding:10px 14px; font-size:14.5px; margin-top:10px; color:#4b3fd6;}
 
-  .links{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:10px;}
-  .linkbtn{display:block; text-decoration:none; color:var(--ink); border:2px solid var(--line); border-radius:20px; padding:20px; background:#fff; transition:transform .1s, box-shadow .1s;}
+  .links{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:10px;}
+  .linkbtn{display:block; text-decoration:none; color:var(--ink); border:2px solid var(--line); border-radius:20px; padding:18px; background:#fff; transition:transform .1s, box-shadow .1s;}
   .linkbtn:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(90,70,180,.12);}
-  .linkbtn .le{font-size:36px;}
-  .linkbtn .lt{font-family:'Gaegu',sans-serif; font-size:22px; margin-top:6px;}
+  .linkbtn .le{font-size:32px;}
+  .linkbtn .lt{font-family:'Gaegu',sans-serif; font-size:20px; margin-top:6px;}
   .linkbtn .ld{font-size:13px; color:var(--soft);}
   .big-link{background:linear-gradient(135deg,#7c5cff,#ff6ba6); color:#fff; border:none;}
   .big-link .ld{color:rgba(255,255,255,.85);}
 
-  footer{text-align:center; color:var(--soft); font-size:14px; padding:30px 16px 50px; border-top:2px solid var(--line);}
+  .next-banner{margin-top:20px; background:linear-gradient(135deg,#7c5cff,#38bdf8); color:#fff; border-radius:22px; padding:22px 24px; text-align:center;}
+  .next-banner .nb-t{font-family:'Gaegu',sans-serif; font-size:clamp(22px,4.5vw,29px);}
+  .next-banner .nb-d{font-size:15px; opacity:.92; margin-top:6px;}
+
+  /* STEP 슬라이드 캐러셀 */
+  .car{margin-top:48px;}
+  .car-top{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .car-arrow{flex:none; border:2px solid var(--line); background:#fff; border-radius:999px; width:40px; height:40px; cursor:pointer;
+    font-size:18px; color:var(--soft); display:flex; align-items:center; justify-content:center; transition:background .15s, opacity .15s;}
+  .car-arrow:hover{background:#f1eeff; color:var(--purple);}
+  .car-arrow:disabled{opacity:.35; cursor:default; pointer-events:none;}
+  .car-dots{flex:1; display:flex; justify-content:center; gap:8px;}
+  .car-dot{border:none; background:var(--line); width:11px; height:11px; border-radius:50%; cursor:pointer; padding:0; transition:transform .15s, background .15s;}
+  .car-dot.on{background:var(--purple); transform:scale(1.25);}
+  .car-viewport{overflow:hidden; border-radius:22px; transition:height .3s ease;}
+  .car-track{display:flex; transition:transform .45s cubic-bezier(.4,0,.2,1); align-items:flex-start;}
+  .car-track > *{flex:0 0 100%; max-width:100%; margin-top:0 !important;}
+  .car-track > header.hero{padding:clamp(24px,6vw,44px) clamp(16px,5vw,32px) 24px;}
+  @media (prefers-reduced-motion: reduce){ .car-track, .car-viewport{transition:none;} }
+
+  footer{text-align:center; color:var(--soft); font-size:14px; padding:30px 16px 50px; border-top:2px solid var(--line); margin-top:40px;}
   .fade{opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s;}
   .fade.show{opacity:1; transform:none;}
   ul.clean{margin:.4em 0; padding-left:1.1em;} ul.clean li{margin:.25em 0;}
@@ -111,403 +125,187 @@
 
 <nav>
   <span class="brand">🤖 LEAD Next 도우미</span>
-  <a href="#s3">개념 시연</a>
-  <a href="#s7">에이전트란?</a>
-  <a href="#s12">퀴즈</a>
-  <a href="#s15">제미나이 시작</a>
-  <a href="#s16">젬스·학습</a>
-  <a href="#s19">여행</a>
-  <a href="#s22">코딩</a>
-  <a href="#team">팀 프로젝트</a>
-  <a href="#links">바로가기</a>
+  <a href="javascript:void(0)" data-goto="0">🌊 시작</a>
+  <a href="javascript:void(0)" data-goto="1">🍢 떡볶이 비유</a>
+  <a href="javascript:void(0)" data-goto="2">🦸 자비스</a>
+  <a href="javascript:void(0)" data-goto="3">✨ 제미나이 접속</a>
+  <a href="javascript:void(0)" data-goto="4">🗺️ 화면 지도</a>
+  <a href="javascript:void(0)" data-goto="5">📚 공부 계획</a>
+  <a href="javascript:void(0)" data-goto="6">🧳 여행 계획</a>
+  <a href="javascript:void(0)" data-goto="7">🎮 숫자 게임</a>
+  <a href="javascript:void(0)" data-goto="8">🚀 다음 시간</a>
+  <a class="home" href="team.html">🌊 팀 프로젝트 →</a>
 </nav>
-
-<header class="hero">
-  <span class="kicker">AI와 함께하는 지역 발전 활동가 · 1·2교시</span>
-  <h1>AI 수업 도우미 페이지</h1>
-  <p class="sub">발표자료 <b>슬라이드 순서 그대로</b> 정리했어요. 각 부분 <b>왼쪽에 슬라이드 번호</b>가 있어서 지금 어디를 하는지 바로 알 수 있어요.<br>프롬프트를 복사해 써 보고 <b>‘결과 예시 보기’</b>를 눌러 미리 확인해 보세요!</p>
-  <div class="badges">
-    <span class="badge">🛠 실습 도구 <b>제미나이(Gemini)</b></span>
-    <span class="badge">🎯 대상 <b>중학교 2학년</b></span>
-    <span class="badge">🔑 학생 로그인은 <b>슬라이드 15부터</b></span>
-  </div>
-</header>
 
 <main>
 
-  <!-- 슬라이드 3 -->
-  <section id="s3">
-    <div class="sec-head fade">
-      <div class="snum c1"><span class="lab">슬라이드</span><span class="no">3</span></div>
-      <div><h2>💬 AI가 뭔지 3문장으로</h2><div class="h-sub">AI란 무엇인가? · 교사가 화면으로 시연</div></div>
+  <div class="car">
+    <div class="car-top">
+      <button class="car-arrow" id="carPrev" aria-label="이전 단계">‹</button>
+      <div class="car-dots" id="carDots"></div>
+      <button class="car-arrow" id="carNext" aria-label="다음 단계">›</button>
     </div>
-    <div class="card fade">
-      <h3>AI를 3문장으로 설명해 달라고 해요 <span class="demo">👩‍🏫 교사 시연</span></h3>
-      <p style="color:var(--soft);font-size:14px;margin-top:0">아직 학생 로그인 전! 선생님이 제미나이 화면으로 보여주는 단계예요.</p>
-      <div class="pcard">
-        <div class="ptext">인공지능을 중학생도 이해할 수 있게 딱 3문장으로 설명해 줘. 마지막 문장엔 재미있는 비유를 넣어 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시</div>
-            <div class="out">인공지능(AI)은 사람처럼 배우고 생각하도록 만든 컴퓨터 기술이에요. 사진·글·소리 같은 수많은 정보를 보고 스스로 규칙을 찾아내서 판단을 내리죠. 한마디로 AI는 ‘책을 엄청 많이 읽고 계속 공부하는 똑똑한 친구’랍니다!</div>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
+    <div class="car-viewport">
+    <div class="car-track" id="carTrack">
 
-  <!-- 슬라이드 5 -->
-  <section id="s5">
-    <div class="sec-head fade">
-      <div class="snum c2"><span class="lab">슬라이드</span><span class="no">5</span></div>
-      <div><h2>🖼️ 우리 반 마스코트 그리기</h2><div class="h-sub">AI는 지금 어디까지? · 교사가 화면으로 시연</div></div>
+  <header class="hero">
+    <span class="kicker">AI와 함께하는 나만의 비서 · 1차시(45분)</span>
+    <h1>AI 수업 도우미</h1>
+    <p class="sub">제미나이로 <b>직접 실습</b>해요. 화살표(‹ ›)로 다음 단계로 넘어가요!</p>
+    <div class="badges">
+      <span class="badge">🛠 실습 도구 <b>제미나이(Gemini)</b></span>
+      <span class="badge">🎯 대상 <b>중학교 2학년</b></span>
+      <span class="badge">⏱ <b>1차시</b>로 압축!</span>
     </div>
-    <div class="card fade">
-      <h3>글로 설명하면 그림을 그려줘요 <span class="demo">👩‍🏫 교사 시연</span></h3>
-      <p style="color:var(--soft);font-size:14px;margin-top:0">‘이미지 만들기’를 켜고 실행 → 반응 폭발! (AI가 창작까지 한다는 걸 보여주기)</p>
-      <div class="pcard">
-        <div class="ptext">우리 반 마스코트로 쓸, 노트북을 든 귀여운 로봇 캐릭터를 그려 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">선생님이 제미나이로 만든 우리 반 마스코트예요! 🎉</div>
-            <img src="image.jpg" alt="우리 반 마스코트 로보봇 - 노트북을 든 귀여운 로봇" style="max-width:100%;border-radius:16px;border:2px solid #ececf4;display:block;box-shadow:0 8px 20px rgba(90,70,180,.12);">
-            <div style="font-size:14px;color:var(--soft);margin-top:8px">마음에 안 들면 <b>“색깔을 바꿔 줘”</b>처럼 이어서 고칠 수도 있어요!</div>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
+  </header>
 
-  <!-- 슬라이드 7~8 : AI vs AI 에이전트 -->
-  <section id="s7">
+  <!-- STEP 0 : AI 에이전트란? -->
+  <section id="s0">
     <div class="sec-head fade">
-      <div class="snum c3"><span class="lab">슬라이드</span><span class="no rng">7~8</span></div>
-      <div><h2>🤔 AI vs AI 에이전트, 뭐가 달라?</h2><div class="h-sub">AI? AI 에이전트? · 오늘의 핵심 개념</div></div>
+      <div class="snum c1"><span class="lab">STEP</span><span class="no">0</span></div>
+      <div><h2>🤔 AI 에이전트란?</h2><div class="h-sub">약 3분</div></div>
     </div>
     <div class="card lead fade">
-      <h3>📖 백과사전 vs 🕴️ 수행비서</h3>
-      <p><b>AI</b>는 질문에 답을 하거나 그림을 그려주는 <b>‘기술’</b>이고, <b>AI 에이전트</b>는 목표를 주면 스스로 계획을 세우고 도구를 사용해 <b>‘실행’까지 하는 비서</b>예요.</p>
-      <div class="menu-grid">
-        <div class="mi"><div class="mi-t">📖 AI = 백과사전</div><div class="mi-d">“제주도 맛집 알려 줘” → <b>답을 알려주고 끝.</b> 물어보면 척척 대답하는 똑똑한 책이에요.</div></div>
-        <div class="mi"><div class="mi-t">🕴️ AI 에이전트 = 수행비서</div><div class="mi-d">“제주도 여행 준비해 줘” → 맛집 찾고, 일정 짜고, <b>결과물까지 만들어서</b> 가져와요.</div></div>
-      </div>
-      <div class="tip">🍜 이런 비유도 좋아요 — 레시피를 알려주는 <b>요리책이 AI</b>라면, 재료를 사 와서 요리를 차려주는 <b>요리사가 AI 에이전트!</b></div>
-      <div class="point">💡 <b>POINT</b> — 한 문장으로: <b>“AI는 답을 주고, AI 에이전트는 일을 끝낸다.”</b></div>
-      <div class="tip">🗣️ <b>발문</b> — “백과사전과 수행비서, 여러분 숙제에 진짜 도움 되는 건 누구일까요? 왜요?”</div>
+      <h3>AI 에이전트가 뭐예요?</h3>
+      <p><b>목표만 주면</b> 스스로 계획을 세우고 <b>실행까지</b> 하는 AI 비서예요.<br>
+      📖 AI = 백과사전 (답만 알려줌) / 🕴️ AI 에이전트 = 수행비서 (일을 끝내줌)</p>
     </div>
   </section>
 
-  <!-- 슬라이드 9 : 작동 원리 -->
-  <section id="s9">
+  <!-- STEP 1 : 떡볶이 심부름 비유 -->
+  <section id="s1">
     <div class="sec-head fade">
-      <div class="snum c4"><span class="lab">슬라이드</span><span class="no">9</span></div>
-      <div><h2>⚙️ AI 에이전트는 어떻게 일할까?</h2><div class="h-sub">지각 → 생각 → 행동 · 3단계 원리</div></div>
+      <div class="snum c2"><span class="lab">STEP</span><span class="no">1</span></div>
+      <div><h2>🍢 떡볶이 심부름으로 이해하기</h2><div class="h-sub">지각 → 생각 → 행동 · 약 4분</div></div>
     </div>
     <div class="card fade">
-      <h3>“떡볶이 심부름”으로 이해하기 🍢</h3>
-      <p style="color:var(--soft);font-size:14.5px;margin-top:0">친구에게 “떡볶이 좀 사다 줘!”라고 부탁했을 때 친구가 하는 일, 그게 바로 에이전트의 3단계예요.</p>
+      <p style="color:var(--soft); font-size:14.5px; margin-top:0">친구에게 "떡볶이 좀 사다 줘!"라고 부탁했을 때 친구가 하는 일 = 에이전트의 3단계</p>
       <div class="menu-grid">
-        <div class="mi"><div class="mi-t">👂 ① 지각 (Perceive)</div><div class="mi-d">부탁을 알아들어요. <b>“매운맛, 3천 원어치구나!”</b> — 주변 환경과 사용자 명령을 인식하는 단계.</div></div>
-        <div class="mi"><div class="mi-t">🧠 ② 생각 (Reasoning)</div><div class="mi-d"><b>“어느 분식집이 싸고 맛있지? 가는 길은?”</b> — 목표를 이루기 위한 단계별 계획을 세우는 단계.</div></div>
-        <div class="mi"><div class="mi-t">🏃 ③ 행동 (Action)</div><div class="mi-d"><b>직접 가서 사 와요!</b> — 이메일 보내기, 예약하기, 코드 실행하기처럼 실제로 수행하는 단계.</div></div>
+        <div class="mi"><div class="mi-t">👂 ① 지각</div><div class="mi-d">부탁을 알아들어요 — "매운맛, 3천 원어치구나!"</div></div>
+        <div class="mi"><div class="mi-t">🧠 ② 생각</div><div class="mi-d">계획을 세워요 — "어디가 싸고 맛있지?"</div></div>
+        <div class="mi"><div class="mi-t">🏃 ③ 행동</div><div class="mi-d">직접 가서 사 와요!</div></div>
       </div>
-      <div class="point">💡 <b>POINT</b> — 보통 AI는 ②에서 멈추고 “이 집이 맛있대요”라고 말만 해요. <b>③ 행동까지 하는 게 에이전트!</b></div>
-      <div class="tip">🙌 <b>활동</b> — 사람도 똑같이 일해요! <b>눈·귀(지각) → 머리(생각) → 손발(행동)</b>을 몸짓으로 다 같이 따라 하면 개념이 오래 남아요.</div>
+      <div class="point">💡 AI는 보통 ②에서 멈추고 말만 해요. <b>③ 행동까지 하는 게 에이전트!</b></div>
     </div>
   </section>
 
-  <!-- 슬라이드 10~11 : 왜 뜨나 + 주변 사례 -->
-  <section id="s10">
+  <!-- STEP 2 : 자비스 vs 아이언맨 -->
+  <section id="s2">
     <div class="sec-head fade">
-      <div class="snum c5"><span class="lab">슬라이드</span><span class="no rng">10~11</span></div>
-      <div><h2>🚀 왜 뜨고 있을까? 어디에 있을까?</h2><div class="h-sub">AI 에이전트의 인기 이유 · 우리 주변 사례</div></div>
-    </div>
-    <div class="card fade">
-      <h3>왜 요즘 AI 에이전트가 뜰까요?</h3>
-      <p>말로만 조언해 주는 친구보다 <b>숙제를 같이 해 주는 친구</b>가 더 고맙죠? AI도 똑같아요.</p>
-      <ul class="clean">
-        <li>💬 <b>대화만으로는 부족</b> — 답을 듣고도 결국 일은 내가 다 해야 했어요.</li>
-        <li>👀 <b>멀티모달의 발전</b> — 이제 AI가 글자뿐 아니라 <b>사진도 보고 소리도 들어요.</b> 눈과 귀가 생긴 셈!</li>
-        <li>⚡ <b>생산성 폭발</b> — 사람이 일일이 시키지 않아도 복잡한 일을 알아서 처리해요.</li>
-      </ul>
-    </div>
-    <div class="card fade">
-      <h3>우리 주변의 AI 에이전트 찾기</h3>
-      <div class="menu-grid">
-        <div class="mi"><div class="mi-t">📚 학습 튜터</div><div class="mi-d">내 약점을 파악해 <b>공부 스케줄</b>을 짜 줘요. → 오늘 <b>슬라이드 16</b>에서 직접 해 봐요!</div></div>
-        <div class="mi"><div class="mi-t">🧳 여행 비서</div><div class="mi-d">목적지만 말하면 예약부터 <b>일정표 작성</b>까지. → 오늘 <b>슬라이드 19</b>에서 직접!</div></div>
-        <div class="mi"><div class="mi-t">💻 코딩 에이전트</div><div class="mi-d">오류를 찾고 <b>직접 수정</b>까지 하는 프로그래머. → 오늘 <b>슬라이드 22</b>에서 직접!</div></div>
-        <div class="mi"><div class="mi-t">🌾 스마트 팜</div><div class="mi-d">작물의 성장부터 수확까지 관리하는 <b>부지런한 농부 로봇</b>.</div></div>
-        <div class="mi"><div class="mi-t">🌊 재난 예방 센터</div><div class="mi-d">강수량을 예측하고 홍수를 감지하는 <b>잠들지 않는 마을 지킴이</b>.</div></div>
-      </div>
-      <div class="tip">🎯 이 중 <b>학습·여행</b>은 오늘 제미나이로 직접 체험하고 <b>코딩</b>까지 맛봐요! <b>농업·재난</b>은 나중에 우리 팀 프로젝트(아두이노)에서 직접 만들 거라고 예고해 주세요.</div>
-      <div class="tip">🗣️ <b>발문</b> — “이 5가지 말고, ‘AI 에이전트가 있었으면!’ 하는 우리 학교 상황 있어요?”</div>
-    </div>
-  </section>
-
-  <!-- 슬라이드 12 -->
-  <section id="s12">
-    <div class="sec-head fade">
-      <div class="snum c3"><span class="lab">슬라이드</span><span class="no">12</span></div>
-      <div><h2>🧩 배운 내용 확인 퀴즈</h2><div class="h-sub">1교시 마무리 · 다 함께 풀기</div></div>
+      <div class="snum c3"><span class="lab">STEP</span><span class="no">2</span></div>
+      <div><h2>🦸 자비스 vs 아이언맨</h2><div class="h-sub">약 3분</div></div>
     </div>
     <div class="card lead fade">
-      <h3>퀴즈 페이지를 열어 다 함께 풀어요</h3>
-      <p>슬라이드 1~12에서 배운 내용을 8문제로 확인해요. 정답을 맞히면 색종이가 팡팡 터져요! 🎉<br>화면을 함께 보며 손들기/외치기로 참여하면 분위기가 확 올라가요.</p>
-      <a class="linkbtn big-link" href="quiz.html" style="margin-top:6px">
-        <div class="le">🤖</div><div class="lt">AI 확인 퀴즈 풀러 가기 →</div>
-        <div class="ld">슬라이드 1~12 · 8문제</div>
+      <p>자비스는 정보를 분석하고 위험을 알려주지만, <b>어디로 날아갈지 결정하고 책임지는 건 아이언맨</b>이에요.</p>
+      <div class="point">💡 에이전트는 <b>비서</b>, 결정과 책임은 언제나 <b>사람(나)</b>의 몫!</div>
+    </div>
+    <div class="card fade">
+      <a class="linkbtn" href="quiz.html">
+        <div class="le">🤖</div><div class="lt">확인 퀴즈 풀어보기 →</div><div class="ld">방금 배운 내용, 8문제로 바로 확인!</div>
       </a>
     </div>
   </section>
 
-  <!-- 슬라이드 14 : AI 에이전트는 비서 -->
-  <section id="s14">
+  <!-- STEP 3 : 제미나이 접속하기 -->
+  <section id="s3">
     <div class="sec-head fade">
-      <div class="snum c6"><span class="lab">슬라이드</span><span class="no rng">13~14</span></div>
-      <div><h2>🦸 자비스 vs 아이언맨</h2><div class="h-sub">AI 에이전트는 비서 · 다 함께 생각해 보기</div></div>
+      <div class="snum c4"><span class="lab">STEP</span><span class="no">3</span></div>
+      <div><h2>✨ 제미나이 접속하기</h2><div class="h-sub">약 2분</div></div>
     </div>
-    <div class="card lead fade">
-      <h3>자비스가 아무리 똑똑해도, 세상을 구하는 건 아이언맨!</h3>
-      <p>영화 속 <b>자비스</b>는 슈트를 설계하고 정보를 분석하고 위험을 알려줘요. 하지만 <b>어디로 날아갈지 결정하고, 그 결과를 책임지는 건 아이언맨</b>이죠. AI 에이전트와 우리의 관계도 똑같아요.</p>
+    <div class="card fade">
+      <h3>🚪 3초 접속</h3>
       <ul class="clean">
-        <li>❓ AI 에이전트의 역할은 <b>어디까지</b>일까?</li>
-        <li>❓ AI 에이전트는 사람을 <b>대체</b>할 수 있을까?</li>
-        <li>❓ <b>모든 결정</b>을 AI 에이전트에게 맡겨도 괜찮을까?</li>
+        <li>① <b>gemini.google.com</b> 접속</li>
+        <li>② 오른쪽 위 <b>로그인</b> → 구글 계정 선택</li>
+        <li>③ 대화창이 열리면 끝!</li>
       </ul>
-      <div class="tip">🗣️ <b>발문</b> — “모든 결정을 AI에게 맡기면 어떤 문제가 생길까요?” (예: 틀린 정보를 그대로 믿게 됨, 내 취향이 무시됨)</div>
-      <div class="point">💡 <b>POINT</b> — 에이전트는 <b>비서</b>, 결정과 책임은 언제나 <b>사람(나)</b>의 몫! 이 질문을 남겨 두고 실습으로 넘어가면, 슬라이드 21(스케줄은 AI가 짜도 공부·여행은 내가!)에서 자연스럽게 다시 이어져요.</div>
-      <div class="links" style="margin-top:14px">
-        <a class="linkbtn" href="https://www.youtube.com/watch?v=O4AFfvocSBI" target="_blank" rel="noopener">
-          <div class="le">🎬</div><div class="lt">영화 클립 — 자비스와 슈트 만들기</div>
-          <div class="ld">아이언맨(2008) Mk.2 제작 장면 · 한글자막 · 처음(0:00)부터 “자비스, 깨어 있나?” · 도입부 2분만 봐도 충분</div>
-        </a>
-        <a class="linkbtn" href="https://www.youtube.com/watch?v=hQNcFWhQ2MA" target="_blank" rel="noopener">
-          <div class="le">📺</div><div class="lt">뉴스 클립 — 자비스가 현실로?</div>
-          <div class="ld">KTV 대한민국 NOW · 1분 32초 전체 시청 · AI 에이전트가 바꿀 미래 모습</div>
-        </a>
+    </div>
+  </section>
+
+  <!-- STEP 4 : 제미나이 화면 지도 -->
+  <section id="s4">
+    <div class="sec-head fade">
+      <div class="snum c5"><span class="lab">STEP</span><span class="no">4</span></div>
+      <div><h2>🗺️ 제미나이 화면 지도</h2><div class="h-sub">약 3분</div></div>
+    </div>
+    <div class="card fade">
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-t">📂 왼쪽 사이드바</div><div class="mi-d">새 대화 · 지난 대화 저장</div></div>
+        <div class="mi"><div class="mi-t">⌨️ 입력창</div><div class="mi-d">여기에 프롬프트를 적어요</div></div>
+        <div class="mi"><div class="mi-t">➕ 첨부</div><div class="mi-d">사진·파일 올려서 물어보기</div></div>
+        <div class="mi"><div class="mi-t">🎤 마이크</div><div class="mi-d">말로 물어보기</div></div>
+        <div class="mi"><div class="mi-t">🖼️ 이미지 만들기</div><div class="mi-d">글로 설명하면 그림을 그려줘요</div></div>
+        <div class="mi"><div class="mi-t">⚡ 모델 선택</div><div class="mi-d">쉬운 건 빠르게, 어려운 건 똑똑하게</div></div>
       </div>
     </div>
   </section>
 
-  <!-- 슬라이드 15 : 제미나이 접속 -->
-  <section id="s15">
+  <!-- STEP 5 : 공부 계획 -->
+  <section id="s5">
     <div class="sec-head fade">
-      <div class="snum c4"><span class="lab">슬라이드</span><span class="no">15</span></div>
-      <div><h2>✨ 제미나이 접속 & 화면 익히기</h2><div class="h-sub">어떤 AI 에이전트를 써 볼까? · 지금부터 학생 실습!</div></div>
+      <div class="snum c6"><span class="lab">STEP</span><span class="no">5</span></div>
+      <div><h2>📚 공부 계획 세우기</h2><div class="h-sub">약 10분</div></div>
     </div>
-
-    <div class="access fade">
-      🔑 <b>여기서 제미나이에 로그인!</b> — 슬라이드 1~12는 개념·퀴즈라 <b>선생님 시연</b>으로 충분했어요. 이제 도구를 처음 소개하는 <b>슬라이드 15</b>부터 학생들이 각자 <b>gemini.google.com</b>에 로그인해 직접 실습을 시작합니다.
-    </div>
-
     <div class="card fade">
-      <h3>🚪 3초 만에 시작하기</h3>
-      <ul class="clean">
-        <li>① 크롬에서 <b>gemini.google.com</b> 접속</li>
-        <li>② 오른쪽 위 <b>로그인</b> → 내 구글 계정 선택</li>
-        <li>③ 대화창이 열리면 끝! (설치·회원가입 필요 없어요)</li>
-      </ul>
-      <div class="tip">💡 검색창은 <b>링크를 찾아주지만</b>, 제미나이는 <b>결과물까지 만들어 줘요.</b> 이게 가장 큰 차이!</div>
-    </div>
-
-    <div class="card fade">
-      <h3>🗺️ 제미나이 화면 지도 — 친구에게 이렇게 설명해요</h3>
-      <div class="menu-grid">
-        <div class="mi"><div class="mi-t">📂 왼쪽 사이드바</div><div class="mi-d">새 대화를 시작하고 지난 대화가 저장되는 곳. 여기 있는 <b>‘젬스(Gems)’</b>가 오늘의 비밀 무기!</div></div>
-        <div class="mi"><div class="mi-t">⌨️ 가운데 입력창</div><div class="mi-d">제미나이한테 말을 거는 곳. 여기에 <b>‘프롬프트(명령·질문)’</b>를 적어요.</div></div>
-        <div class="mi"><div class="mi-t">➕ 첨부 버튼</div><div class="mi-d">사진이나 파일을 함께 올려서 “이거 봐 줘”라고 할 수 있어요.</div></div>
-        <div class="mi"><div class="mi-t">🎤 마이크</div><div class="mi-d">손으로 안 치고 <b>말로</b> 물어볼 수 있어요.</div></div>
-        <div class="mi"><div class="mi-t">🖼️ 이미지 만들기</div><div class="mi-d">글로 설명하면 <b>그림을 그려줘요.</b></div></div>
-        <div class="mi"><div class="mi-t">🔎 Deep Research</div><div class="mi-d">어려운 주제를 <b>깊게 조사</b>해서 정리해 줘요.</div></div>
-        <div class="mi"><div class="mi-t">🧩 Canvas</div><div class="mi-d">글이나 <b>코드를 옆에 펼쳐 놓고</b> 같이 고칠 수 있어요.</div></div>
-        <div class="mi"><div class="mi-t">⚡ 위쪽 모델 선택</div><div class="mi-d"><b>‘빠른 답’</b>과 <b>‘더 똑똑한 답’</b> 중 골라요. 어려운 건 똑똑한 쪽!</div></div>
-        <div class="mi"><div class="mi-t">🔁 답변 아래 버튼</div><div class="mi-d"><b>다시 생성</b>·복사·<b>구글 문서로 내보내기</b>가 돼요.</div></div>
-      </div>
-    </div>
-
-    <div class="card fade">
-      <h3>첫 실습 — 내 AI 비서 이름 짓기</h3>
       <div class="pcard">
-        <div class="ptext">너는 오늘부터 내 공부와 생활을 도와주는 AI 비서야. 너를 뭐라고 부르면 좋을지 이름 3개만 추천해 줘.</div>
+        <div class="ptext">영어야. 지난 시험 75점, 목표는 90점. 기말까지 한 달 남았고 하루 1시간 공부할 수 있어. 내 약점은 문법이야. 요일별 공부 계획을 표로 짜 줘.</div>
         <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
         <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
           <div class="result-body"><div class="rlabel">생성 결과 예시</div>
-            <div class="out">좋아요! 이런 이름은 어때요?
-1. 제미(Gemmy) — 제미나이에서 딴, 친근한 애칭
-2. 척척비서 — 뭐든 척척 도와준다는 뜻
-3. 아라 — ‘모든 걸 알아간다’는 느낌의 이름
-마음에 드는 걸 골라 불러 주세요!</div>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- 슬라이드 16~18 : 젬스 + 학습 플래너 -->
-  <section id="s16">
-    <div class="sec-head fade">
-      <div class="snum c5"><span class="lab">슬라이드</span><span class="no rng">16~18</span></div>
-      <div><h2>💎 젬스 만들고 → 학습 플래너</h2><div class="h-sub">공부 스케줄 · 젬스로 만들어 여러 과목에 적용</div></div>
-    </div>
-
-    <div class="card lead fade">
-      <h3>💎 먼저! 젬스(Gems)가 뭐예요?</h3>
-      <p>젬스는 내가 원하는 <b>역할과 규칙을 미리 저장해 둔 ‘나만의 맞춤 AI 비서’</b>예요. 한 번 만들면 다음부터 긴 설명 없이 <b>“이번엔 수학!”</b> 한마디면 끝!</p>
-      <div class="tip">🧭 <b>공부 스케줄</b>은 과목마다 계속 만드니까 → <b>젬스</b>로! (뒤에 나오는 여행처럼 한 번 쓰고 마는 건 그냥 프롬프트로)</div>
-    </div>
-
-    <div class="card fade">
-      <h3>🛠️ 1단계 — ‘학습 플래너 비서’ 젬스 만들기</h3>
-      <ul class="clean">
-        <li>① 왼쪽 사이드바 <b>Gems → ‘새 Gem 만들기’</b></li>
-        <li>② 이름: <b>‘학습 플래너 비서’</b></li>
-        <li>③ 아래 <b>지시문</b>을 ‘안내(Instructions)’에 붙여넣기 → 저장</li>
-      </ul>
-      <div class="pcard">
-        <span class="p-badge b-step">젬스 지시문 (한 번만 저장)</span>
-        <div class="ptext">너는 중학생 전용 '학습 플래너 비서'야. 사용자가 과목·현재 점수·목표 점수·남은 기간·하루 가능 시간·약점을 알려주면 다음 규칙을 지켜 계획을 만들어:
-1) 결과는 반드시 요일별 표로 보여줄 것.
-2) 약점 과목·단원에 시간을 더 배분할 것.
-3) 매일 '오늘의 한 줄 응원'을 붙일 것.
-4) 부담되지 않게 하루 목표는 3개 이하로.
-정보가 부족하면 먼저 나에게 한 가지씩 질문해 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 지시문 복사</button>
-      </div>
-    </div>
-
-    <div class="card fade">
-      <h3>📅 2단계 — 만든 젬스로 학습 플래너 실습 <span style="font-size:13px;color:var(--soft)">(과목만 바꿔 반복!)</span></h3>
-      <p style="color:var(--soft);font-size:14.5px;margin-top:0">규칙은 젬스가 기억해요. 그래서 <b>과목·점수·약점만 짧게</b> 말하면 돼요. 여러 과목에 적용해 보면 젬스가 왜 편한지 바로 알아요!</p>
-
-      <div class="pcard">
-        <span class="p-badge b-first">처음 · 영어</span>
-        <div class="ptext">영어야. 지난 시험 75점, 목표는 90점. 기말까지 한 달 남았고 하루 1시간 공부할 수 있어. 내 약점은 문법이야.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시 (영어 1주차 · 하루 1시간)</div>
             <table class="sched">
-              <tr><th>요일</th><th>공부 내용 (약점 ‘문법’ 집중)</th><th>시간</th></tr>
-              <tr><td>월</td><td class="subj">문법: 현재/과거 시제 정리 + 문제 10개</td><td>60분</td></tr>
-              <tr><td>화</td><td class="subj">단어 30개 암기 + 문법 복습 퀴즈</td><td>60분</td></tr>
-              <tr><td>수</td><td class="subj">문법: 조동사 정리 + 짧은 문장 만들기</td><td>60분</td></tr>
-              <tr><td>목</td><td class="subj">독해 지문 2개 + 모르는 문법 표시</td><td>60분</td></tr>
-              <tr><td>금</td><td class="subj">한 주 문법 총정리 + 오답 다시 풀기</td><td>60분</td></tr>
-              <tr><td>토</td><td class="subj">듣기 연습 + 가벼운 단어 복습</td><td>40분</td></tr>
-              <tr><td>일</td><td class="subj">휴식 + 다음 주 계획 확인 😊</td><td>—</td></tr>
+              <tr><th>요일</th><th>공부 내용</th><th>시간</th></tr>
+              <tr><td>월</td><td class="subj">문법: 현재/과거 시제 + 문제 10개</td><td>60분</td></tr>
+              <tr><td>화</td><td class="subj">단어 30개 + 문법 복습 퀴즈</td><td>60분</td></tr>
+              <tr><td>수</td><td class="subj">문법: 조동사 + 짧은 문장 만들기</td><td>60분</td></tr>
+              <tr><td>목</td><td class="subj">독해 지문 2개 + 오답 표시</td><td>60분</td></tr>
+              <tr><td>금</td><td class="subj">한 주 문법 총정리</td><td>60분</td></tr>
             </table>
-            <div class="rlabel" style="margin-top:8px">💌 오늘의 한 줄 응원: “어제보다 한 걸음! 충분히 잘하고 있어요.”</div>
           </div>
         </details>
       </div>
-
-      <div class="pcard">
-        <span class="p-badge b-rep">반복 ① · 수학</span>
-        <div class="ptext">이번엔 수학으로 만들어 줘. 지난 시험 60점, 목표는 80점, 약점은 도형이야.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시 (똑같은 형식, 과목만 수학으로!)</div>
-            <div class="out">수학 요일별 플래너 (약점 ‘도형’ 집중)
-월: 도형 기본 개념 정리 + 예제 5개
-화: 도형 넓이·부피 공식 암기 + 문제
-수: 지난 오답 다시 풀기 + 계산 연습
-… (요일별 표로 계속)
-💌 오늘의 한 줄 응원: “어려운 도형, 하나씩 정복 중! 👍”
-※ 젬스가 규칙(표·응원·하루 3개 이하)을 기억해서 형식이 똑같이 나와요.</div>
-          </div>
-        </details>
-      </div>
-
-      <div class="pcard">
-        <span class="p-badge b-rep">반복 ② · 과학</span>
-        <div class="ptext">이번엔 과학으로 만들어 줘. 지난 시험 70점, 목표는 85점, 약점은 암기야.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시 (과목만 과학으로!)</div>
-            <div class="out">과학 요일별 플래너 (약점 ‘암기’ 집중)
-월: 핵심 용어 카드 만들기 + 소리 내어 외우기
-화: 단원 요약 노트 + 암기 퀴즈
-수: 실험 과정 그림으로 정리
-… (요일별 표로 계속)
-💌 오늘의 한 줄 응원: “외운 만큼 내 것! 오늘도 파이팅 🔬”</div>
-          </div>
-        </details>
-      </div>
-
-      <div class="point">💡 <b>POINT</b> — 젬스를 한 번 만들어 두니 <b>영어 → 수학 → 과학</b>처럼 과목만 바꿔 말해도 똑같은 형식으로 뚝딱! 이게 젬스의 힘 💎</div>
+      <div class="point">💡 과목만 바꿔서 다시 물어봐도 <b>똑같은 형식</b>으로 짜 줘요. (수학·과학도 해 보세요!)</div>
     </div>
   </section>
 
-  <!-- 슬라이드 19~20 : 여행 -->
-  <section id="s19">
+  <!-- STEP 6 : 여행 계획 -->
+  <section id="s6">
     <div class="sec-head fade">
-      <div class="snum c6"><span class="lab">슬라이드</span><span class="no rng">19~20</span></div>
-      <div><h2>🧳 여행 계획 — 젬스 없이!</h2><div class="h-sub">한 번 쓰고 마는 건 그냥 프롬프트로</div></div>
+      <div class="snum c1"><span class="lab">STEP</span><span class="no">6</span></div>
+      <div><h2>🧳 여행 계획 세우기</h2><div class="h-sub">약 10분 · 처음 → 수정으로 이어가기</div></div>
     </div>
-
     <div class="card fade">
-      <h3>여행 스케줄 짜기 — <span style="color:var(--pink)">‘처음 → 수정’</span>으로 이어가기</h3>
-      <p style="color:var(--soft);font-size:14.5px;margin-top:0">앞에서 학습 플래너는 젬스로 만들었죠? <b>여행처럼 한 번 쓰고 마는 건 젬스 없이 그냥 프롬프트</b>로 해요. 답이 마음에 안 들면 새 대화 말고 <b>같은 창에서 이어서</b> 고쳐요!</p>
-
       <div class="pcard">
         <span class="p-badge b-first">처음</span>
-        <div class="ptext">기말시험이 끝났어. 친구 둘과 함께 내가 있는 서귀포여중에서 가까운 곳으로 반나절 일정으로 놀러 가고 싶어. 각자 쓸 수 있는 돈은 3만 원 정도인데 여행 스케줄을 시간표로 만들어 줘.</div>
+        <div class="ptext">기말시험이 끝났어. 친구 둘과 함께 서귀포여중에서 가까운 곳으로 반나절 일정으로 놀러 가고 싶어. 각자 3만 원 정도 쓸 수 있는데 여행 스케줄을 시간표로 만들어 줘.</div>
         <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
         <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시 (반나절 · 1인 3만 원)</div>
+          <div class="result-body"><div class="rlabel">생성 결과 예시</div>
             <table class="sched">
-              <tr><th>시간</th><th>일정</th><th>예상 비용</th></tr>
-              <tr><td>13:00</td><td class="subj">서귀포여중 앞 출발 → 이중섭거리 구경</td><td>0원</td></tr>
-              <tr><td>13:40</td><td class="subj">분식집에서 점심 (떡볶이·김밥)</td><td>7,000원</td></tr>
-              <tr><td>14:40</td><td class="subj">서귀포 매일올레시장 간식 탐방</td><td>8,000원</td></tr>
-              <tr><td>16:00</td><td class="subj">카페에서 음료 + 수다</td><td>6,000원</td></tr>
-              <tr><td>17:30</td><td class="subj">버스로 귀가</td><td>2,000원</td></tr>
+              <tr><th>시간</th><th>일정</th><th>비용</th></tr>
+              <tr><td>13:00</td><td class="subj">이중섭거리 구경</td><td>0원</td></tr>
+              <tr><td>13:40</td><td class="subj">분식집 점심</td><td>7,000원</td></tr>
+              <tr><td>14:40</td><td class="subj">매일올레시장 간식</td><td>8,000원</td></tr>
+              <tr><td>16:00</td><td class="subj">카페 휴식</td><td>6,000원</td></tr>
             </table>
-            <div class="rlabel" style="margin-top:8px">합계 약 23,000원 — 예산 안에서 알뜰하게! 🎒</div>
           </div>
         </details>
       </div>
-
       <div class="pcard">
-        <span class="p-badge b-edit">수정 ①</span>
+        <span class="p-badge b-edit">수정</span>
         <div class="ptext">서귀포는 너무 많이 가봐서 제주시에 가보고 싶어. 제주시 일정으로 만들어 줘.</div>
         <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">생성 결과 예시 (장소만 제주시로 바뀜)</div>
-            <div class="out">앞의 조건(친구 둘·3만 원·반나절)은 그대로! 장소만 제주시로 바꿨어요.
-13:00 제주시청 근처 출발 → 삼성혈 산책
-13:40 분식·간식으로 점심 (7,000원)
-14:40 제주 동문시장 구경 + 간식 (8,000원)
-16:00 카페에서 휴식 (6,000원)
-17:30 버스로 귀가 (2,000원)
-합계 약 23,000원 👍</div>
-          </div>
-        </details>
       </div>
-
-      <div class="pcard">
-        <span class="p-badge b-edit">수정 ②</span>
-        <div class="ptext">위의 여행 일정을 친구들과 공유할 수 있도록 이미지로 만들어서 카톡에서 전달하고 싶어. 내가 이동하는 지역의 이미지를 넣어서 400×600 크기의 파일로 만들어 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">이런 이미지 카드가 생성돼요</div>
-            <img src="image1.jpg" alt="제주시 풍경이 담긴 세로형(400x600) 여행 일정표 카드" style="max-width:100%;border-radius:16px;border:2px solid #ececf4;display:block;box-shadow:0 8px 20px rgba(90,70,180,.12);">
-            <div style="font-size:14px;color:var(--soft);margin-top:8px">제주시 풍경이 담긴 <b>세로형(400×600) 일정표 카드</b>가 만들어져요. 저장해서 <b>카카오톡으로 친구에게 바로 공유</b>해 보세요!</div>
-          </div>
-        </details>
-      </div>
+      <div class="point">💡 답이 마음에 안 들면 새 대화 말고 <b>같은 창에서 이어서</b> 고쳐요!</div>
     </div>
   </section>
 
-  <!-- 슬라이드 22~27 : 바이브 코딩 -->
-  <section id="s22">
+  <!-- STEP 7 : 숫자 게임 만들기 -->
+  <section id="s7">
     <div class="sec-head fade">
-      <div class="snum c1"><span class="lab">슬라이드</span><span class="no rng">22~27</span></div>
-      <div><h2>🏆 바이브 코딩 — 게임 만들기</h2><div class="h-sub">말(프롬프트)로 게임을 만든다! 한 줄씩 늘려가며 완성</div></div>
+      <div class="snum c2"><span class="lab">STEP</span><span class="no">7</span></div>
+      <div><h2>🎮 숫자 게임 만들기</h2><div class="h-sub">약 15분 · 바이브 코딩</div></div>
     </div>
-
     <div class="card fade">
-      <h3>⑥ 숫자 맞추기 게임 만들기 <span class="demo">슬라이드 23</span></h3>
       <div class="pcard">
         <span class="p-badge b-first">처음</span>
         <div class="ptext">웹페이지로 1~100 사이 숫자 맞추기 게임을 만들고 싶어. 사용자가 기회 5번 만에 못 맞추면 패배 문구를 띄워 주고, 매 단계마다 업다운(Up/Down) 힌트를 줘야 해.</div>
@@ -515,10 +313,9 @@
         <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
           <div class="result-body"><div class="rlabel">이렇게 동작하는 게임이 만들어져요</div>
             <div class="out">🎮 숫자를 입력하면…
-- 정답보다 작으면 “⬆️ UP! 더 큰 수예요”
-- 정답보다 크면 “⬇️ DOWN! 더 작은 수예요”
-- 5번 안에 못 맞히면 “아쉬워요! 정답은 47이었어요 😢”
-Canvas를 켜면 코드가 정리되고 바로 실행해 볼 수 있어요.</div>
+- 정답보다 작으면 "⬆️ UP! 더 큰 수예요"
+- 정답보다 크면 "⬇️ DOWN! 더 작은 수예요"
+- 5번 안에 못 맞히면 "아쉬워요! 정답은 47이었어요 😢"</div>
           </div>
         </details>
       </div>
@@ -526,109 +323,123 @@ Canvas를 켜면 코드가 정리되고 바로 실행해 볼 수 있어요.</div
         <span class="p-badge b-edit">수정</span>
         <div class="ptext">웹페이지에 디자인을 입히고 싶어. 깔끔하고 심플한 애플 스타일의 페이지로 수정해 줘.</div>
         <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-        <details class="result"><summary>👀 결과 예시 보기 <span class="chev">▼</span></summary>
-          <div class="result-body"><div class="rlabel">기능은 그대로, 겉모습만 세련되게!</div>
-            <div class="out">둥근 버튼, 넉넉한 여백, 부드러운 회색·흰색 톤의 ‘애플st’ 화면으로 바뀌어요.
-👉 배운 점: <b>기능 먼저 만들고, 디자인은 나중에 ‘수정’으로!</b> 이게 바이브 코딩 순서예요.</div>
-          </div>
-        </details>
       </div>
-      <div class="point">💡 <b>POINT</b> — 뭉뚱그려 부탁하면 엉성하게, <b>처음 → 수정</b>으로 구체적으로 이어 부탁하면 훨씬 좋게 나와요!</div>
+      <div class="point">💡 뭉뚱그려 부탁하면 엉성하게, <b>처음 → 수정</b>으로 구체적으로 이어 부탁하면 훨씬 좋게 나와요!</div>
       <a class="linkbtn" href="code_number.html" style="margin-top:14px">
-        <div class="le">🏆</div><div class="lt">완성 예시 게임 플레이하기</div>
-        <div class="ld">선생님이 만든 ‘숫자 맞추기 게임’ 열어보기 →</div>
+        <div class="le">🏆</div><div class="lt">완성 예시 게임 플레이하기 →</div>
       </a>
     </div>
+  </section>
 
+  <!-- STEP 8 : 다음 시간 -->
+  <section id="s8">
+    <div class="sec-head fade">
+      <div class="snum c3"><span class="lab">STEP</span><span class="no">8</span></div>
+      <div><h2>🚀 오늘 정리 & 다음 시간</h2><div class="h-sub">약 5분</div></div>
+    </div>
+    <div class="next-banner fade">
+      <div class="nb-t">🌊 다음 시간엔 팀 프로젝트!</div>
+      <div class="nb-d">우리 동네 문제를 찾고, 아이디어를 쏟아내요. 이 아이디어는 나중에 <b>아두이노로 진짜 기계</b>가 됩니다.</div>
+      <a class="wb-hero-btn" href="team.html" style="background:#fff; color:var(--purple); box-shadow:none;">🌊 팀 프로젝트 바로가기</a>
+    </div>
     <div class="card fade">
-      <h3>⑦ 간식 이상형 월드컵 만들기 <span class="demo">슬라이드 22~27</span></h3>
-      <p style="color:var(--soft);font-size:14.5px;margin-top:0">아래 프롬프트를 <b>순서대로, 같은 대화창에서 이어서</b> 입력하면 완성! <b>후보 50개 중 16개를 내가 골라</b> 우리 반만의 월드컵을 진행할 수 있어요.</p>
-      <div class="pcard">
-        <span class="p-badge b-step">1단계 · 처음</span>
-        <div class="ptext">HTML/CSS/자바스크립트로 '간식 이상형 월드컵' 웹페이지를 만들어 줘. 16강 토너먼트로, 화면에 간식 두 개가 나오면 하나를 클릭해서 다음 라운드로 올려. 라운드 이름(16강·8강·준결승·결승)을 표시하고, 마지막에 우승 간식을 크게 축하 화면으로 보여 줘. 모바일에서도 잘 보이게 해 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
+      <h3>🎁 시간이 남으면</h3>
+      <div class="links">
+        <a class="linkbtn" href="code_artifact.html">
+          <div class="le">🏆</div><div class="lt">간식 이상형 월드컵</div><div class="ld">완성 예시 게임 플레이</div>
+        </a>
       </div>
-      <div class="pcard">
-        <span class="p-badge b-edit">2단계 · 수정 (핵심!)</span>
-        <div class="ptext">네가 추천하는 50가지 간식 중에 내가 16개를 선택하게 하는 화면을 넣어서, 내가 다 선택하면 경기가 시작되게 바꿔 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-      </div>
-      <div class="pcard">
-        <span class="p-badge b-edit">3단계 · 수정 (원하면)</span>
-        <div class="ptext">글씨를 더 크고 알록달록하게, 간식을 클릭하면 살짝 커지는 애니메이션을 넣고, 버튼도 눌러보고 싶게 예쁘게 다듬어 줘.</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-      </div>
-      <div class="pcard">
-        <span class="p-badge b-edit">4단계 · 에러가 나면?</span>
-        <div class="ptext">지금 코드에서 오류가 있으면 찾아서 고쳐 줘. (또는 에러 메시지를 그대로 붙여넣고) 이 에러는 뭐가 문제야?</div>
-        <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사</button>
-      </div>
-      <div class="tip">🍡 AI도 가끔 틀려요(할루시네이션). <b>에러 메시지를 그대로 복사해 붙여넣고 물어보기</b> — 고치는 것도 우리 몫이에요!</div>
-      <a class="linkbtn" href="code_artifact.html" style="margin-top:14px">
-        <div class="le">🏆</div><div class="lt">완성 예시 게임 플레이하기</div>
-        <div class="ld">선생님이 만든 ‘간식 이상형 월드컵’ 열어보기 →</div>
-      </a>
     </div>
   </section>
 
-  <!-- 팀 프로젝트 맛보기 (2교시 마무리) -->
-  <section id="team">
-    <div class="sec-head fade">
-      <div class="snum c5"><span class="lab">슬라이드</span><span class="no rng">28~37</span></div>
-      <div><h2>🌊 우리가 잘찾앙 바꿔보카!!</h2><div class="h-sub">2교시 마무리 · 팀 만들고 아이디어 쏟아내기</div></div>
     </div>
-    <div class="card lead fade">
-      <h3>수업의 마지막 활동 — 팀 프로젝트 첫걸음!</h3>
-      <p><b>팀 만들기 → 역할 나누기 → 동네 문제 찾기 → 아이디어 쏟아내기</b>까지 오늘 해 봅니다. 최종 결정은 다음 시간에! 여기서 낸 아이디어를 <b>앞으로 아두이노로 직접 만들게</b> 돼요.</p>
-      <a class="linkbtn big-link" href="team.html" style="margin-top:6px">
-        <div class="le">🌊</div><div class="lt">잘찾앙 바꿔보카!! 열기 →</div>
-        <div class="ld">팀 구성 · 문제 찾기 · 아이디어 워크북 (약 45분)</div>
-      </a>
-      <div class="tip">👩‍🏫 <b>각 팀 노트북에 띄워 두고</b> 진행하세요. 기록은 화면에 바로 적어요. AI 비서 활용은 마지막에 선생님 시연으로!</div>
     </div>
-  </section>
-
-  <!-- 바로가기 -->
-  <section id="links">
-    <div class="sec-head fade">
-      <div class="snum c4" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1)"><span class="lab">수업</span><span class="no" style="font-size:18px">링크</span></div>
-      <div><h2>🔗 수업 바로가기</h2><div class="h-sub">수업 중 여기서 바로 열어요</div></div>
-    </div>
-    <div class="links fade">
-      <a class="linkbtn" href="https://gemini.google.com" target="_blank" rel="noopener">
-        <div class="le">✨</div><div class="lt">제미나이 열기</div><div class="ld">gemini.google.com · 구글 로그인</div>
-      </a>
-      <a class="linkbtn" href="quiz.html">
-        <div class="le">🤖</div><div class="lt">AI 확인 퀴즈</div><div class="ld">슬라이드 12 · 8문제</div>
-      </a>
-      <a class="linkbtn" href="code_number.html">
-        <div class="le">🎯</div><div class="lt">숫자 맞추기 게임</div><div class="ld">완성 예시 게임</div>
-      </a>
-      <a class="linkbtn" href="code_artifact.html">
-        <div class="le">🏆</div><div class="lt">간식 이상형 월드컵</div><div class="ld">완성 예시 게임</div>
-      </a>
-      <a class="linkbtn" href="team.html">
-        <div class="le">🌊</div><div class="lt">잘찾앙 바꿔보카!!</div><div class="ld">팀 구성 · 아이디어 워크북</div>
-      </a>
-    </div>
-  </section>
+  </div>
 
 </main>
 
 <footer>
-  LEAD Next · AI와 함께하는 지역 발전 활동가 &nbsp;|&nbsp; 1·2교시 수업 도우미 페이지
+  LEAD Next · AI와 함께하는 지역 발전 활동가 &nbsp;|&nbsp; 1차시 수업 도우미 페이지
 </footer>
 
 <script>
   function copyPrompt(btn){
-    const t = btn.closest('.pcard').querySelector('.ptext').innerText;
+    const t = btn.previousElementSibling.textContent;
     navigator.clipboard.writeText(t).then(()=>{
       const o=btn.textContent; btn.textContent='복사됐어요! ✓';
       setTimeout(()=>btn.textContent=o,1400);
     }).catch(()=>{ btn.textContent='복사 실패 😢'; });
   }
+
   const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}})},{threshold:.12});
-  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.fade').forEach(el=>{
+    if(el.closest('.car')) el.classList.add('show');
+    else obs.observe(el);
+  });
+
+  /* STEP 슬라이드 캐러셀 (좌우로 넘기기) */
+  (function(){
+    const track = document.getElementById('carTrack');
+    const viewport = track.parentElement;
+    const slides = Array.from(track.children);
+    const dotsWrap = document.getElementById('carDots');
+    const prevBtn = document.getElementById('carPrev');
+    const nextBtn = document.getElementById('carNext');
+    const navLinks = document.querySelectorAll('nav a[data-goto]');
+    let cur = 0;
+
+    slides.forEach((_, i)=>{
+      const d = document.createElement('button');
+      d.type='button'; d.className='car-dot'; d.setAttribute('aria-label', (i+1)+'단계로 이동');
+      d.addEventListener('click', ()=>goTo(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function setHeight(){
+      viewport.style.height = slides[cur].offsetHeight + 'px';
+    }
+    function render(){
+      track.style.transform = 'translateX(-'+(cur*100)+'%)';
+      dots.forEach((d,i)=>d.classList.toggle('on', i===cur));
+      navLinks.forEach(a=>a.style.color = (+a.dataset.goto===cur ? 'var(--purple)' : ''));
+      prevBtn.disabled = cur===0;
+      nextBtn.disabled = cur===slides.length-1;
+      setHeight();
+    }
+    function goTo(i){
+      cur = Math.max(0, Math.min(slides.length-1, i));
+      render();
+    }
+
+    prevBtn.addEventListener('click', ()=>goTo(cur-1));
+    nextBtn.addEventListener('click', ()=>goTo(cur+1));
+    navLinks.forEach(a=>a.addEventListener('click', ()=>{
+      goTo(+a.dataset.goto);
+      viewport.scrollIntoView({behavior:'smooth', block:'start'});
+    }));
+
+    document.addEventListener('keydown', e=>{
+      const tag = (document.activeElement && document.activeElement.tagName) || '';
+      if(tag==='INPUT' || tag==='TEXTAREA') return;
+      if(e.key==='ArrowLeft') goTo(cur-1);
+      if(e.key==='ArrowRight') goTo(cur+1);
+    });
+
+    let touchX=null;
+    viewport.addEventListener('touchstart', e=>{ touchX = e.touches[0].clientX; }, {passive:true});
+    viewport.addEventListener('touchend', e=>{
+      if(touchX===null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if(Math.abs(dx) > 45){ dx<0 ? goTo(cur+1) : goTo(cur-1); }
+      touchX=null;
+    }, {passive:true});
+
+    track.querySelectorAll('details').forEach(d=>d.addEventListener('toggle', setHeight));
+    window.addEventListener('resize', setHeight);
+
+    render();
+  })();
 </script>
 </body>
 </html>
