@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우리가 잘찾앙 바꿔보카!! 🌊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#7c5cff; --pink:#ff6ba6; --mint:#2ec4b6; --sky:#38bdf8; --orange:#ff8f3f;
+    --ink:#2b2b3a; --soft:#6b6b80; --line:#ececf4; --bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Gowun Dodum',system-ui,'Malgun Gothic',sans-serif; line-height:1.7;}
+
+  nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.93); backdrop-filter:blur(8px);
+    border-bottom:2px solid var(--line); display:flex; gap:3px; align-items:center; flex-wrap:wrap; padding:10px clamp(14px,4vw,40px);}
+  nav .brand{font-family:'Gaegu',sans-serif; font-weight:700; font-size:21px; color:#0284c7; margin-right:auto;}
+  nav a{text-decoration:none; color:var(--soft); font-size:14px; padding:6px 10px; border-radius:999px; white-space:nowrap;}
+  nav a:hover{background:#e3f4ff; color:#0284c7;}
+  nav a.home{border:1.5px solid var(--line);}
+
+  header.hero{padding:clamp(34px,7vw,60px) clamp(16px,5vw,40px) 34px; text-align:center; background:radial-gradient(1200px 300px at 50% -60px, #e9f7ff 0%, #ffffff 70%);}
+  header .kicker{display:inline-block; background:#e3f4ff; color:#0284c7; font-weight:700; padding:6px 16px; border-radius:999px; font-size:14px; margin-bottom:14px;}
+  header h1{font-family:'Gaegu',sans-serif; font-size:clamp(34px,8vw,58px); margin:.1em 0; line-height:1.15;}
+  header p.sub{color:var(--soft); font-size:clamp(15px,2.6vw,18px); margin:.4em auto 0; max-width:640px;}
+  .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:20px;}
+  .badge{background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 14px; font-size:14px; color:var(--soft);}
+  .badge b{color:var(--ink);}
+
+  main{max-width:900px; margin:0 auto; padding:10px clamp(16px,5vw,32px) 80px;}
+
+  section{margin-top:48px;}
+  .sec-head{display:flex; align-items:center; gap:16px; margin-bottom:8px;}
+  .snum{flex:none; width:74px; min-height:66px; border-radius:16px; color:#fff; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; font-family:'Gaegu',sans-serif; box-shadow:0 8px 18px rgba(56,140,220,.2); padding:6px 4px;}
+  .snum .lab{font-size:11px; opacity:.95;}
+  .snum .no{font-size:24px; font-weight:700; line-height:1;}
+  .c1{background:linear-gradient(135deg,var(--sky),#7dd3fc);}
+  .c2{background:linear-gradient(135deg,var(--pink),#fda4d0);}
+  .c3{background:linear-gradient(135deg,var(--mint),#5eead4);}
+  .c4{background:linear-gradient(135deg,var(--orange),#fbbf24);}
+  .c5{background:linear-gradient(135deg,var(--purple),#a78bfa);}
+  .sec-head h2{font-family:'Gaegu',sans-serif; font-size:clamp(24px,5vw,34px); margin:0;}
+  .sec-head .h-sub{color:var(--soft); font-size:14px; margin-top:2px;}
+
+  .card{background:#fff; border:2px solid var(--line); border-radius:22px; padding:clamp(18px,3vw,26px); margin-top:16px; box-shadow:0 10px 30px rgba(56,140,220,.06);}
+  .card h3{font-family:'Gaegu',sans-serif; font-size:21px; margin:.1em 0 .4em;}
+
+  /* 어떻게 해요? — 워크북 지시 */
+  .howto{background:#f0faff; border:2px solid #cfe8ff; border-radius:16px; padding:12px 16px; margin:10px 0 4px;}
+  .howto .ht{font-family:'Gaegu',sans-serif; font-size:17px; color:#0284c7;}
+  .howto ol{margin:.3em 0 0; padding-left:1.3em; font-size:15px;}
+  .howto ol li{margin:.15em 0;}
+
+  .menu-grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); margin-top:10px;}
+  .mi{border:2px solid var(--line); border-radius:16px; padding:14px; background:#fff;}
+  .mi .mi-t{font-family:'Gaegu',sans-serif; font-size:19px;}
+  .mi .mi-d{font-size:14px; color:var(--soft); margin-top:4px;}
+
+  .point{margin-top:12px; background:#fffdf0; border:2px solid #ffeaa0; border-radius:14px; padding:11px 15px; font-size:14.5px;}
+  .point b{color:#b8860b;}
+  .tip{background:#f1eeff; border-radius:14px; padding:10px 14px; font-size:14px; margin-top:10px; color:#4b3fd6;}
+  ul.clean{margin:.4em 0; padding-left:1.1em;} ul.clean li{margin:.3em 0;}
+
+  /* 여정 */
+  .road{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); margin-top:10px;}
+  .rd{border:2px solid var(--line); border-radius:16px; padding:16px; background:#fff; text-align:center; position:relative;}
+  .rd.now{border-color:var(--sky); background:#f0faff;}
+  .rd .re{font-size:32px;}
+  .rd .rt{font-family:'Gaegu',sans-serif; font-size:20px; margin-top:4px;}
+  .rd .rw{font-size:13.5px; color:var(--soft); margin-top:2px;}
+  .rd .rnow{position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:var(--sky); color:#fff; font-size:11px; font-weight:700; padding:2px 10px; border-radius:999px;}
+
+  /* 역할 카드 */
+  .role{border:2px solid var(--line); border-radius:18px; padding:14px; background:#fff;}
+  .role .r-emo{font-size:32px;}
+  .role .r-t{font-family:'Gaegu',sans-serif; font-size:20px;}
+  .role .r-d{font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .role .r-fit{margin-top:8px; font-size:13px; background:#f0faff; color:#0284c7; border-radius:10px; padding:5px 10px;}
+  .role input{width:100%; margin-top:10px; border:2px solid var(--line); border-radius:10px; padding:8px 10px; font-family:'Gowun Dodum',sans-serif; font-size:15px;}
+  .role input:focus{outline:none; border-color:var(--sky);}
+
+  /* 기록판 */
+  .board{background:#f7fbff; border:2px solid #cfe8ff; border-radius:20px; padding:16px 18px; margin-top:14px;}
+  .board .b-t{font-family:'Gaegu',sans-serif; font-size:19px; color:#0284c7;}
+  .board .b-d{font-size:13.5px; color:var(--soft); margin-top:2px;}
+  .board input[type=text]{width:100%; border:2px solid #d8e9f8; border-radius:12px; padding:10px 12px; font-family:'Gowun Dodum',sans-serif; font-size:15px; background:#fff; margin-top:8px;}
+  .board input:focus{outline:none; border-color:var(--sky);}
+  .save-hint{font-size:12.5px; color:var(--soft); margin-top:8px;}
+
+  /* 문제 카드 (선택형) */
+  details.pick{margin-top:12px; border:2px dashed #ffd699; border-radius:16px; background:#fffaf0; overflow:hidden;}
+  details.pick summary{cursor:pointer; list-style:none; padding:13px 16px; font-family:'Gaegu',sans-serif; font-size:18px; color:#c47f00; user-select:none;}
+  details.pick summary::-webkit-details-marker{display:none;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0 16px 14px;}
+  .chip{border:2px solid #ffd699; background:#fff; border-radius:999px; padding:7px 14px; font-size:14px; cursor:pointer; font-family:'Gowun Dodum',sans-serif; transition:transform .08s;}
+  .chip:hover{background:#fff3d6;}
+  .chip:active{transform:scale(.95);}
+  .chip.used{opacity:.4; text-decoration:line-through;}
+
+  /* 아이디어 워크북 */
+  .idea{background:#fff; border:2px solid var(--line); border-radius:18px; padding:16px; margin-top:14px;}
+  .idea .i-head{display:flex; align-items:center; gap:10px;}
+  .idea .i-no{flex:none; width:34px; height:34px; border-radius:50%; background:var(--sky); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Gaegu',sans-serif; font-size:18px; font-weight:700;}
+  .idea .i-head input{flex:1; border:2px solid var(--line); border-radius:12px; padding:9px 12px; font-family:'Gowun Dodum',sans-serif; font-size:15.5px;}
+  .idea input:focus{outline:none; border-color:var(--sky);}
+  .fill{display:flex; align-items:center; gap:8px; margin-top:9px; font-size:14.5px;}
+  .fill .f-label{flex:none; width:104px; font-family:'Gaegu',sans-serif; font-size:16px;}
+  .fill input{flex:1; border:2px solid #eee; border-radius:10px; padding:8px 11px; font-family:'Gowun Dodum',sans-serif; font-size:14.5px;}
+  .crit{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:9px; font-size:14px;}
+  .crit .c-label{flex:none; width:186px;}
+  .stars{display:flex; gap:2px;}
+  .stars button{border:none; background:none; cursor:pointer; font-size:21px; padding:2px; filter:grayscale(1); opacity:.4; transition:transform .08s;}
+  .stars button.on{filter:none; opacity:1;}
+  .stars button:active{transform:scale(1.2);}
+  .i-total{margin-top:8px; font-family:'Gaegu',sans-serif; font-size:16px; color:var(--orange);}
+
+  .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
+  .abtn{border:none; cursor:pointer; font-family:'Gaegu',sans-serif; font-size:16px; padding:9px 20px; border-radius:999px; transition:transform .08s;}
+  .abtn:active{transform:scale(.96);}
+  .a-main{background:var(--sky); color:#fff;}
+  .a-sub{background:#fff; color:var(--soft); border:2px solid var(--line);}
+
+  /* 교사 시연 */
+  .demo-tag{display:inline-block; background:#eef6ff; color:#2563eb; border:1.5px solid #cfe3ff; font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; vertical-align:middle;}
+  .ptext{white-space:pre-wrap; background:#0f1226; color:#e7e9ff; border-radius:14px; padding:14px 16px; font-size:15px; line-height:1.65; margin-top:10px;}
+  .copy{margin-top:10px; border:none; cursor:pointer; background:var(--purple); color:#fff; font-family:'Gaegu',sans-serif; font-size:16px; padding:8px 18px; border-radius:999px;}
+  .copy:active{transform:scale(.96);}
+
+  .next-banner{margin-top:20px; background:linear-gradient(135deg,#38bdf8,#7c5cff); color:#fff; border-radius:22px; padding:22px 24px; text-align:center;}
+  .next-banner .nb-t{font-family:'Gaegu',sans-serif; font-size:clamp(22px,4.5vw,29px);}
+  .next-banner .nb-d{font-size:15px; opacity:.92; margin-top:6px;}
+
+  footer{text-align:center; color:var(--soft); font-size:14px; padding:30px 16px 50px; border-top:2px solid var(--line); margin-top:40px;}
+  .fade{opacity:0; transform:translateY(16px); transition:opacity .5s, transform .5s;}
+  .fade.show{opacity:1; transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">🌊 잘찾앙 바꿔보카!!</span>
+  <a href="#road">여정</a>
+  <a href="#step1">① 팀 만들기</a>
+  <a href="#step2">② 문제 찾기</a>
+  <a href="#step3">③ 아이디어</a>
+  <a href="#step4">④ AI 맛보기</a>
+  <a class="home" href="index.html">🤖 수업 도우미 ←</a>
+</nav>
+
+<header class="hero">
+  <span class="kicker">지역 사회를 바꾸는 팀 프로젝트 · 첫걸음</span>
+  <h1>우리가 잘찾앙 바꿔보카!! 🌊</h1>
+  <p class="sub">제주말로 <b>"우리가 잘 찾아서, 바꿔볼까!"</b><br>
+  오늘은 팀을 만들고, 우리 동네 문제를 찾고, 아이디어를 쏟아내는 날이에요.<br><b>결정은 다음에!</b> 오늘은 많이 내는 팀이 이기는 거예요. 😎</p>
+  <div class="badges">
+    <span class="badge">👥 한 팀 <b>5명 · 5가지 역할</b></span>
+    <span class="badge">✍️ <b>화면에 바로 쓰는</b> 워크북</span>
+    <span class="badge">🔧 이 아이디어, <b>나중에 진짜로 만들어요!</b></span>
+  </div>
+</header>
+
+<main>
+
+  <!-- 여정 -->
+  <section id="road">
+    <div class="sec-head fade">
+      <div class="snum c1"><span class="lab">시작</span><span class="no">🗺️</span></div>
+      <div><h2>우리의 여정</h2><div class="h-sub">오늘 낸 아이디어가 진짜 기계가 되기까지</div></div>
+    </div>
+    <div class="card fade">
+      <div class="road">
+        <div class="rd now"><span class="rnow">오늘!</span><div class="re">💡</div><div class="rt">팀 + 문제 + 아이디어</div><div class="rw">팀 만들기 → 동네 문제 찾기 → 아이디어 쏟아내기</div></div>
+        <div class="rd"><div class="re">🔧</div><div class="rt">앞으로</div><div class="rw">아두이노와 센서로 우리 아이디어를 <b>진짜 기계로!</b> 완성하면 발표까지</div></div>
+      </div>
+      <div class="point">💡 오늘 낸 아이디어는 버려지지 않아요. <b>우리 손으로 직접 만들 후보</b>가 됩니다!</div>
+    </div>
+  </section>
+
+  <!-- STEP 1 -->
+  <section id="step1">
+    <div class="sec-head fade">
+      <div class="snum c2"><span class="lab">STEP</span><span class="no">1</span></div>
+      <div><h2>팀 만들기 & 역할 정하기</h2><div class="h-sub">약 10분 · 서로의 강점을 찾아서</div></div>
+    </div>
+    <div class="card fade">
+      <div class="howto">
+        <div class="ht">📌 어떻게 해요?</div>
+        <ol>
+          <li>역할 카드 5개를 돌아가며 <b>소리 내어</b> 읽어요.</li>
+          <li>"○○는 이거 딱이야!" 하고 <b>서로 추천</b>해요.</li>
+          <li>정해지면 <b>카드에 이름</b>을 적고, 팀 이름도 지어요.</li>
+        </ol>
+      </div>
+      <div class="menu-grid">
+        <div class="role"><div class="r-emo">👑</div><div class="r-t">팀장</div><div class="r-d">회의 진행, 일정 관리, 발표 준비</div><div class="r-fit">친구들 얘기를 잘 듣고 정리하는 사람 딱!</div><input type="text" data-store="role_pm" placeholder="이름"></div>
+        <div class="role"><div class="r-emo">🔧</div><div class="r-t">하드웨어 전문가</div><div class="r-d">아두이노와 센서를 회로로 연결</div><div class="r-fit">조립·만들기 좋아하는 사람 딱!</div><input type="text" data-store="role_hw" placeholder="이름"></div>
+        <div class="role"><div class="r-emo">💻</div><div class="r-t">소프트웨어 전문가</div><div class="r-d">AI와 함께 코드 만들고 에러 잡기</div><div class="r-fit">오늘 바이브 코딩이 재밌었던 사람 딱!</div><input type="text" data-store="role_sw" placeholder="이름"></div>
+        <div class="role"><div class="r-emo">🎨</div><div class="r-t">디자이너</div><div class="r-d">회로를 보호하는 멋진 구조물 제작</div><div class="r-fit">그림·꾸미기·레고를 사랑하는 사람 딱!</div><input type="text" data-store="role_ds" placeholder="이름"></div>
+        <div class="role"><div class="r-emo">📊</div><div class="r-t">데이터 분석가</div><div class="r-d">센서가 보낸 숫자가 맞는지 검증</div><div class="r-fit">틀린 그림 찾기 잘하는 꼼꼼한 사람 딱!</div><input type="text" data-store="role_da" placeholder="이름"></div>
+      </div>
+      <div class="board">
+        <div class="b-t">✏️ 우리 팀 이름</div>
+        <input type="text" data-store="team_name" placeholder="예: 바다지킴이, 파도수비대 …">
+        <div class="save-hint">💾 이 화면에 적는 건 자동 저장돼요. 새로고침해도 남아요!</div>
+      </div>
+      <div class="tip">👩‍🏫 역할이 겹치면 가위바위보보다 <b>서로 추천하기</b>가 좋아요. 역할은 나중에 바꿀 기회가 있다고 안내하면 부담이 줄어요.</div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section id="step2">
+    <div class="sec-head fade">
+      <div class="snum c3"><span class="lab">STEP</span><span class="no">2</span></div>
+      <div><h2>우리 동네 문제 찾기</h2><div class="h-sub">약 12분 · AI보다 먼저, 우리 머리로!</div></div>
+    </div>
+    <div class="card fade">
+      <div class="howto">
+        <div class="ht">📌 어떻게 해요?</div>
+        <ol>
+          <li>아래 질문을 보고 <b>한 사람이 하나씩</b> 돌아가며 말해요.</li>
+          <li>생각이 안 나면 <b>노란 문제 카드</b>를 열어 골라요.</li>
+          <li>제일 공감되는 <b>3개</b>를 데이터 분석가가 기록해요.</li>
+        </ol>
+      </div>
+
+      <h3>🌊 이런 적 없었나요?</h3>
+      <ul class="clean">
+        <li>🌀 태풍 올 때 <b>위험했던 곳</b>은?</li>
+        <li>🏖️ 바닷가·갯바위에서 <b>아찔했던 순간</b>은?</li>
+        <li>🐟 양식장, 배 타시는 분들의 <b>걱정거리</b>는?</li>
+        <li>🌫️ 안개 낀 날, 비 많이 온 날 <b>불편했던 것</b>은?</li>
+        <li>🚶 산책로·올레길에서 "여기 위험한데?" 싶었던 곳은?</li>
+      </ul>
+
+      <details class="pick">
+        <summary>🎴 생각이 잘 안 나면? 문제 카드 열기 (누르면 아래에 자동 입력!)</summary>
+        <div class="chips">
+          <button class="chip">태풍 때 해안도로·방파제에 물이 넘쳐요</button>
+          <button class="chip">갯바위·갯벌에서 사람이 고립되는 사고가 나요</button>
+          <button class="chip">여름 바다에서 물놀이 사고가 걱정돼요</button>
+          <button class="chip">양식장 물 온도가 갑자기 변해서 물고기가 위험해요</button>
+          <button class="chip">안개 낀 날 항구와 도로가 잘 안 보여요</button>
+          <button class="chip">바닷가에 쓰레기가 자꾸 쌓여요</button>
+          <button class="chip">폭우가 오면 하천 물이 갑자기 불어나요</button>
+          <button class="chip">밤 바닷가 길이 어두워서 무서워요</button>
+          <button class="chip">혼자 밭·포구에서 일하시는 어르신이 걱정돼요</button>
+          <button class="chip">여름에 차 안·모래사장이 너무 뜨거워요</button>
+        </div>
+      </details>
+
+      <div class="board">
+        <div class="b-t">📝 우리 팀이 고른 문제 3가지</div>
+        <input type="text" data-store="prob1" placeholder="①">
+        <input type="text" data-store="prob2" placeholder="②">
+        <input type="text" data-store="prob3" placeholder="③">
+      </div>
+      <div class="tip">👩‍🏫 카드를 먼저 보여주면 생각이 카드에 갇혀요. <b>먼저 떠올리게 하고, 막힌 팀만</b> 카드를 열게 하세요.</div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section id="step3">
+    <div class="sec-head fade">
+      <div class="snum c4"><span class="lab">STEP</span><span class="no">3</span></div>
+      <div><h2>아이디어 쏟아내기</h2><div class="h-sub">약 15분 · 마법의 문장으로 만들기</div></div>
+    </div>
+
+    <div class="card fade">
+      <h3>✨ 마법의 문장</h3>
+      <p style="text-align:center; font-family:'Gaegu',sans-serif; font-size:clamp(19px,4vw,26px); background:#f0faff; border-radius:16px; padding:14px;">
+        "<b style="color:#0284c7">___</b>을 알아채면 → <b style="color:#e0447e">___</b>해 주는 기계"
+      </p>
+      <div class="menu-grid">
+        <div class="mi"><div class="mi-t">👀 기계가 알아챌 수 있는 것</div><div class="mi-d">물 높이 · 흔들림 · 온도 · 습도 · 색깔 · 움직임…</div></div>
+        <div class="mi"><div class="mi-t">📢 기계가 해 줄 수 있는 것</div><div class="mi-d">소리 삑삑! · 불빛 반짝! · 글자 표시 · 팔처럼 움직이기</div></div>
+      </div>
+      <div class="point">💡 예시 — "물이 <b>차오르는 걸 알아채면</b> → <b>삑삑! 빨간불!</b> 해 주는 기계" = 침수 경보기 완성!<br>
+      🔧 정확한 부품은 <b>다음 시간에 공개</b>돼요. 오늘은 마음껏 상상해도 OK!</div>
+    </div>
+
+    <div class="card fade">
+      <div class="howto">
+        <div class="ht">📌 어떻게 해요?</div>
+        <ol>
+          <li>STEP 2의 문제 하나를 골라 <b>마법의 문장</b>에 넣어 말해요.</li>
+          <li>좋은 아이디어 <b>3개</b>를 골라 아래에 적어요. (이름은 재밌게!)</li>
+          <li>다 적으면 <b>기준 3개로 별점</b>을 매겨요. 별이 많으면 유력 후보!</li>
+        </ol>
+      </div>
+
+      <div class="idea">
+        <div class="i-head"><div class="i-no">1</div><input type="text" data-store="idea1" placeholder="아이디어 이름 (예: 파도 감시대장)"></div>
+        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i1what" placeholder="예: 물이 기준보다 높이 차오르면"></div>
+        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i1do" placeholder="예: 삑삑 소리 + 빨간불 + 화면에 '위험'"></div>
+        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i1c1"></span></div>
+        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i1c2"></span></div>
+        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i1c3"></span></div>
+        <div class="i-total" data-total="1"></div>
+      </div>
+      <div class="idea">
+        <div class="i-head"><div class="i-no">2</div><input type="text" data-store="idea2" placeholder="아이디어 이름"></div>
+        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i2what" placeholder=""></div>
+        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i2do" placeholder=""></div>
+        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i2c1"></span></div>
+        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i2c2"></span></div>
+        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i2c3"></span></div>
+        <div class="i-total" data-total="2"></div>
+      </div>
+      <div class="idea">
+        <div class="i-head"><div class="i-no">3</div><input type="text" data-store="idea3" placeholder="아이디어 이름"></div>
+        <div class="fill"><span class="f-label">👀 알아채면</span><input type="text" data-store="i3what" placeholder=""></div>
+        <div class="fill"><span class="f-label">📢 해 줘요!</span><input type="text" data-store="i3do" placeholder=""></div>
+        <div class="crit"><span class="c-label">🎯 우리 동네 진짜 문제?</span><span class="stars" data-store="i3c1"></span></div>
+        <div class="crit"><span class="c-label">🔧 만들 수 있을 것 같아?</span><span class="stars" data-store="i3c2"></span></div>
+        <div class="crit"><span class="c-label">💖 팀원 모두 재밌어 해?</span><span class="stars" data-store="i3c3"></span></div>
+        <div class="i-total" data-total="3"></div>
+      </div>
+
+      <div class="btnrow">
+        <button class="abtn a-main" onclick="copySummary(this)">📤 우리 팀 기록 복사하기</button>
+        <button class="abtn a-sub" onclick="resetBoard()">🗑️ 기록 지우기</button>
+      </div>
+      <div class="save-hint">📤 복사해서 선생님께 제출해요. 이 기록으로 다음 시간에 최종 결정!</div>
+      <div class="point">💡 <b>결정은 다음 시간에 우리가!</b> 밤새 더 좋은 생각이 나면 바꿔도 돼요.</div>
+    </div>
+  </section>
+
+  <!-- STEP 4 : 교사 시연 -->
+  <section id="step4">
+    <div class="sec-head fade">
+      <div class="snum c5"><span class="lab">STEP</span><span class="no">4</span></div>
+      <div><h2>AI 비서 맛보기 <span class="demo-tag">👩‍🏫 선생님 시연</span></h2><div class="h-sub">약 8분 · 다음 시간엔 이렇게 할 거예요</div></div>
+    </div>
+    <div class="card fade">
+      <p style="margin-top:0">여러분이 낸 아이디어, <b>AI 비서는 뭐라고 할까요?</b> 선생님이 화면으로 보여줄게요. 다음 시간에는 <b>진짜 센서 목록</b>을 가지고 여러분이 직접 해 봅니다!</p>
+
+      <div class="ptext">우리는 해안 지역의 문제를 해결하는 프로젝트를 하고 있어. 특히 [팀이 고른 문제]가 걱정이야. 물 높이·흔들림·온도·습도·색깔을 감지하는 센서와, 소리·불빛·글자 표시·모터가 있는 아두이노 키트로 만들 수 있는 창의적인 프로젝트 아이디어 3개를 제안해 줘. 각 아이디어의 주제, 해결하려는 문제, 작동 원리를 중학생이 이해할 수 있게 알려줘.</div>
+      <button class="copy" onclick="copyPrompt(this)">📋 프롬프트 복사 (선생님용)</button>
+
+      <div class="ptext" style="margin-top:14px">아이디어가 조금 어려워. 중학생 팀이 만들 수 있게 더 간단하게 다시 제안해 줘.</div>
+      <button class="copy" onclick="copyPrompt(this)">📋 수정 프롬프트 복사 (선생님용)</button>
+
+      <div class="point">💡 시연하며 꼭 한마디 — "AI는 <b>제안</b>만 해요. 뭐가 우리 동네에 필요한지는 <b>AI가 몰라요, 우리만 알아요.</b> 그래서 결정은 언제나 우리!"</div>
+      <div class="tip">👩‍🏫 한 팀의 문제를 [ ]에 넣어 시연하면 아이들 몰입이 확 올라가요. AI 제안과 아이들 아이디어가 비슷하면 "여러분이 AI만큼 잘했네!"라고 칭찬해 주세요.</div>
+    </div>
+
+    <div class="next-banner fade">
+      <div class="nb-t">🔌 다음 시간 예고</div>
+      <div class="nb-d">진짜 <b>센서</b>를 보면서, 오늘 낸 아이디어를 다듬고 <b>하나로 결정</b>해요.<br>그리고 아두이노로 <b>진짜 만들기</b> 시작!</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  LEAD Next · 우리가 잘찾앙 바꿔보카!! &nbsp;|&nbsp; <a href="index.html" style="color:#0284c7">1·2교시 도우미로 돌아가기</a>
+</footer>
+
+<script>
+  function copyPrompt(btn){
+    const t = btn.previousElementSibling.textContent;
+    navigator.clipboard.writeText(t).then(()=>{
+      const o=btn.textContent; btn.textContent='복사됐어요! ✓';
+      setTimeout(()=>btn.textContent=o,1400);
+    }).catch(()=>{ btn.textContent='복사 실패 😢'; });
+  }
+
+  /* 자동 저장 */
+  const KEY='leadnext_team_board';
+  let store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ store={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+
+  document.querySelectorAll('input[data-store]').forEach(el=>{
+    const k=el.dataset.store;
+    if(store[k]) el.value=store[k];
+    el.addEventListener('input',()=>{ store[k]=el.value; save(); });
+  });
+
+  /* 문제 카드 → 빈 칸에 자동 입력 */
+  document.querySelectorAll('.chip').forEach(ch=>{
+    ch.addEventListener('click',()=>{
+      const slots=['prob1','prob2','prob3'];
+      const empty=slots.find(k=>!(store[k]||'').trim());
+      if(!empty){ alert('문제 칸 3개가 다 찼어요! 지우고 싶은 칸을 비운 뒤 다시 눌러요.'); return; }
+      store[empty]=ch.textContent; save();
+      document.querySelector('input[data-store=\"'+empty+'\"]').value=ch.textContent;
+      ch.classList.add('used');
+    });
+  });
+
+  /* 별점 */
+  document.querySelectorAll('.stars').forEach(box=>{
+    const k=box.dataset.store;
+    for(let i=1;i<=5;i++){
+      const b=document.createElement('button');
+      b.type='button'; b.textContent='⭐'; b.dataset.v=i;
+      b.addEventListener('click',()=>{ store[k]=(store[k]===i?0:i); save(); paint(); });
+      box.appendChild(b);
+    }
+  });
+  function paint(){
+    document.querySelectorAll('.stars').forEach(box=>{
+      const v=store[box.dataset.store]||0;
+      box.querySelectorAll('button').forEach(b=>b.classList.toggle('on', +b.dataset.v<=v));
+    });
+    for(let n=1;n<=3;n++){
+      const t=(store['i'+n+'c1']||0)+(store['i'+n+'c2']||0)+(store['i'+n+'c3']||0);
+      const el=document.querySelector('[data-total="'+n+'"]');
+      if(el) el.textContent = t>0 ? '합계 ⭐ '+t+'점 / 15점' : '';
+    }
+  }
+  paint();
+
+  /* 기록 복사 */
+  function copySummary(btn){
+    const g=k=>store[k]||'';
+    const lines=[
+      '🌊 우리가 잘찾앙 바꿔보카!! — 팀 기록',
+      '팀명: '+g('team_name'),
+      '👑 '+g('role_pm')+' | 🔧 '+g('role_hw')+' | 💻 '+g('role_sw')+' | 🎨 '+g('role_ds')+' | 📊 '+g('role_da'),
+      '',
+      '📝 우리 동네 문제',
+      '① '+g('prob1'), '② '+g('prob2'), '③ '+g('prob3'),
+      '',
+      '💡 아이디어 (별점: 문제/구현/흥미)'
+    ];
+    for(let n=1;n<=3;n++){
+      const t=(store['i'+n+'c1']||0)+(store['i'+n+'c2']||0)+(store['i'+n+'c3']||0);
+      lines.push(n+'. '+g('idea'+n)+' — '+g('i'+n+'what')+' → '+g('i'+n+'do')+' (⭐'+t+'/15)');
+    }
+    lines.push('', '✅ 최종 결정은 다음 시간에 우리가!');
+    navigator.clipboard.writeText(lines.join('\n')).then(()=>{
+      const o=btn.textContent; btn.textContent='복사됐어요! ✓';
+      setTimeout(()=>btn.textContent=o,1400);
+    }).catch(()=>{ btn.textContent='복사 실패 😢'; });
+  }
+
+  function resetBoard(){
+    if(!confirm('우리 팀 기록을 모두 지울까요?')) return;
+    store={}; save();
+    document.querySelectorAll('input[data-store]').forEach(el=>el.value='');
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('used'));
+    paint();
+  }
+
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
